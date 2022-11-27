@@ -61,19 +61,19 @@ html, body {
 .input{
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-     border-radius: 10px;
-     border: 1px solid #214371;
-     color: #214371;
-     width: 250px;
-     height: 40px;
-     padding-left: 10px;
-     margin-bottom: 4%;
+    border-radius: 10px;
+    border: 1px solid #214371;
+    color: #214371;
+    width: 250px;
+    height: 40px;
+    padding-left: 10px;
+    margin-bottom: 4%;
 }
 
 .input:focus{
     outline: none;
-     border: 1px solid #3e7dd4;
-     color: #214371;
+    border: 1px solid #3e7dd4;
+    color: #214371;
 
 }
 
@@ -90,4 +90,26 @@ html, body {
 
 .margin-0-impt{
     margin: 0% !important;
+}
+
+.button-modal-accept{
+    background-color: #214371;
+    color: white;
+    border-radius: 20px;
+    width: 200px;
+    border: unset;
+    height: 40px;
+    text-decoration: underline;
+
+}
+.button-modal-cancel{
+    color: #214371;
+    text-decoration: underline;
+    border: unset;
+    background-color: transparent;
+
+}
+.flex-centered{
+    display: flex;
+    justify-content: center;
 }

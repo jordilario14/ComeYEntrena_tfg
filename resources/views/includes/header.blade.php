@@ -42,8 +42,13 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="w-100 flex-centered">
+            <button type="button" class="button-modal-accept">Acceder</button>
+        </div>
+        <div class="w-100 flex-centered">
+            <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+        
       </div>
     </div>
   </div>
