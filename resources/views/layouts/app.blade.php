@@ -23,9 +23,9 @@
 
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link href="https://{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://{{ asset('css/header.css') }}" rel="stylesheet">
+    <link href="https://{{ asset('css/footer.css') }}" rel="stylesheet">
 
 </head>
 <body>
