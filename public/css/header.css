@@ -9,7 +9,7 @@ html, body {
 
 .title-main{
     font-weight: bold;
-    font-size: 40px;
+    font-size: 30px;
     color: #214371;
 }
 
@@ -19,7 +19,7 @@ html, body {
 
 .hr-separador {
     border: 3px solid #214371;
-    width: 90%;
+    /* width: 90%; */
     margin-left: 5%;
     opacity: 1 !important;
 }
@@ -64,7 +64,7 @@ html, body {
     border-radius: 10px;
     border: 1px solid #214371;
     color: #214371;
-    width: 250px;
+    width: 230px;
     height: 40px;
     padding-left: 10px;
     margin-bottom: 4%;
@@ -100,16 +100,76 @@ html, body {
     border: unset;
     height: 40px;
     text-decoration: underline;
-
 }
+
+.button-modal-accept:hover{
+    background-color: #336dbe;
+}
+
+.button-modal-accept:active{
+    background-color: #0f233f;
+}
+
 .button-modal-cancel{
     color: #214371;
-    text-decoration: underline;
     border: unset;
     background-color: transparent;
+}
+
+.button-modal-cancel:hover{
+    text-decoration: underline;
 
 }
+
 .flex-centered{
     display: flex;
     justify-content: center;
+}
+
+.header-cye{
+    margin-top: 1rem;
+    width: 90%;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.separated-bt{
+    margin: 0 5% 0 5%;
+        padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+}
+
+
+
+@media screen and (min-width: 992px) {
+    .pl2{
+        padding-left: 2rem;
+    }
+    
+    .pr2{
+        padding-right: 2rem;
+    }
+    
+    .plr2{
+        padding: 0 2rem 0 2rem;
+    }
+}
+
+.separated-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-toggler.navbar-toggler {
+  border: none;
+} 
+
+.custom-toggler:focus{
+    border: none;
+}
+
+.navbar-light .navbar-toggler {
+    color: transparent;
 }
