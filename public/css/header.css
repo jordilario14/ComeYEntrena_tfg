@@ -126,6 +126,9 @@
 
 .header-cye{
     padding: 1rem 5% 0 5%;
+    position: fixed;
+    background-color: white;
+    width: 100%;
 
 }
 

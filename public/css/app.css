@@ -3,6 +3,9 @@
     font-family: "Inter";
 }
 
+.justified-left{
+    text-align: justify;
+}
 
 html, body {
     font-family: "Inter" !important;
@@ -147,6 +150,11 @@ footer{
 .padded-5-rem{
     padding-bottom: 5rem;
 }
+
+.padded-top-8{
+    padding-top: 8rem;
+}
+
 
 .part-3-body{
     padding: 3rem 5% 0 5%;

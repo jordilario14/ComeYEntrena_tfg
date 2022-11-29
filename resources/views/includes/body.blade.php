@@ -2,15 +2,15 @@
 
 @section('content')
 
-<div class="part-1-body">
+<div class="part-1-body padded-top-8">
 
     <div class="flex-custom">
         <div>
-            <h1 class="title-cye-1st">
+            <h1 class="title-cye-1st" id="main-title">
                 Una buena preparación <br> requiere buena nutrición.
             </h1>
         
-            <p class="text-cye-1st margin-bottom-2 paragraph-limit">
+            <p class="text-cye-1st margin-bottom-2 paragraph-limit justified-left">
                 En Come y Entrena creemos que la base de un buen entreno 
                 requiere prepararse correctamente y seguir una dieta
                 personalizada. Gracias a nuestro servicio podrás acceder
@@ -29,11 +29,11 @@
     </div>
     
 
-    <div class="w-100 flex-centered">
+    <div class="w-100 flex-centered" id="about-title">
         <div class="vl"></div>
     </div>
 
-    <h1 class="title-cye flex-centered">
+    <h1 class="title-cye flex-centered" >
         Y nosotros, ¿Quiénes somos?
     </h1>
     <div class="flex-centered">
@@ -117,7 +117,7 @@
     </div>
 
     <div class="mt-6">
-        <h1 class="title-cye flex-centered">
+        <h1 class="title-cye flex-centered" id="location-title">
             ¿Dónde estamos?
         </h1>
     

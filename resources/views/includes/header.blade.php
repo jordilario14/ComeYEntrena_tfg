@@ -15,17 +15,17 @@
   <div class="separated-bt collapse navbar-collapse " id="navbarNavDropdown">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0 login-ul">
       <li class="nav-item pr2">
-        <span class="logIn text-cye-default">
+        <span class="logIn text-cye-default btn-header" target="#main-title" id="home-header">
           Inicio
         </span>
       </li>
-      <li class="nav-item plr2">
-        <span class="logIn text-cye-default">
+      <li class="nav-item plr2"> 
+        <span class="logIn text-cye-default btn-header" target="#about-title" id="about-header">
           Sobre nosotros
         </span>
       </li>
       <li class="nav-item pl2">
-        <span class="logIn text-cye-default">
+        <span class="logIn text-cye-default btn-header" target="#location-title" id="location-header">
           Dónde estamos
         </span>
       </li>

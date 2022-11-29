@@ -5,4 +5,13 @@ $( document ).ready(function() {
           })
         modal_login.toggle();
     });
+
+    $(".btn-header").on("click", function () {
+        let target = $(this).attr('target');
+        if (target == "#main-title") {
+            window.scrollTo(0, 0);
+        }else{
+            $.scrollTo(`${target}`, { duration:400 });
+        }
+    })
 });
