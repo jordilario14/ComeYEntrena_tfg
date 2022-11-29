@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $("#login-link").on("click", function () {
+    $("#login-link, #login-link-body").on("click", function () {
         let modal_login = new bootstrap.Modal(document.getElementById('login-modal'), {
             keyboard: false
           })

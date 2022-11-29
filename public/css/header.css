@@ -3,9 +3,7 @@
     font-family: "Inter";
 }
 
-html, body {
- font-family: "Inter" !important;
-}
+
 
 .title-main{
     font-weight: bold;
@@ -20,8 +18,8 @@ html, body {
 .hr-separador {
     border: 3px solid #214371;
     /* width: 90%; */
-    margin-left: 5%;
     opacity: 1 !important;
+    margin-bottom: 0 !important;
 }
 
 .margin-left-5{
@@ -121,26 +119,19 @@ html, body {
 
 }
 
-.flex-centered{
-    display: flex;
-    justify-content: center;
+.zero-padding{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .header-cye{
-    margin-top: 1rem;
-    width: 90%;
+    padding: 1rem 5% 0 5%;
+
 }
 
 .w-100{
     width: 100%;
 }
-
-.separated-bt{
-    margin: 0 5% 0 5%;
-        padding-right: var(--bs-gutter-x,.75rem);
-    padding-left: var(--bs-gutter-x,.75rem);
-}
-
 
 
 @media screen and (min-width: 992px) {

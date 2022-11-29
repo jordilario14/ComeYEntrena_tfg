@@ -1,9 +1,7 @@
-<div class="container text-center golmar-footer">
-    <p class="textFooter">
-        {{ __('translations.footerTextP1') }}
-        <br>
-        {{ __('translations.footerTextP2') }}
-        <a class="link linkFooter" href="https://www.golmar.es">https://www.golmar.es</a>
-    </p>
+<div class="container text-center footer-cye footer-font">
+    <hr class="hr-separador-blanco ">
 
+    <p class="textFooter">
+        jordilario@uoc.edu
+    </p>
 </div>

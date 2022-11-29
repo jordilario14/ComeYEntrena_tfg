@@ -1,0 +1,258 @@
+@font-face {
+    src: url('../fonts/Inter-VariableFont_slnt,wght.ttf');
+    font-family: "Inter";
+}
+
+
+html, body {
+    font-family: "Inter" !important;
+}
+
+body{
+    background-color: #214371;
+}
+
+header{
+    background-color: white;
+}
+
+footer{
+    padding-top:5rem
+}
+
+.flexbox-column{
+    display: flex;
+    justify-content: center;
+}
+
+.title-cye{
+    color: #214371;
+    font-weight: bolder ;
+    font-size: 45px;
+    margin-bottom: 2rem;
+}
+
+.title-cye-1st{
+    color: #214371;
+    font-weight: bolder ;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.title-cye-white{
+    text-align: center;
+    padding-top: 1rem;
+    color: #fff;
+    font-weight: bolder ;
+    font-size: 45px;
+    margin-bottom: 2rem;
+}
+
+.part-1-body{
+    padding: 3rem 5% 0 5%;
+    background-color: white;
+}
+
+.text-cye-default{
+    color: #214371;
+}
+
+
+
+.margin-bottom-2{
+    margin-bottom: 2rem;
+}
+
+
+.button-home{
+    background-color: #214371;
+    color: white;
+    border-radius: 30px;
+    width: 200px;
+    border: unset;
+    height: 60px;
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Inter';
+}
+
+.button-home:hover{
+    background-color: #336dbe;
+}
+
+.button-home:active{
+    background-color: #0f233f;
+}
+
+.vl {
+    margin: 4% 0 ;
+    border-left: 4px solid #214371 ;
+    height: 50px;
+  }
+
+.vl-white {
+    margin: 4% 0 ;
+    border-left: 4px solid #fff ;
+    height: 50px;
+}
+
+.flex-centered{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.img_home{
+    max-height: 150px;
+}
+
+.flex-sp-bt{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.text-home-img{
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    padding-top: 1rem;
+}
+
+
+
+
+.title-cye-card{
+    color: #214371;
+    font-weight: bolder ;
+    font-size: 45px;
+    padding-top: 2rem;
+}
+
+.card-custom-home{
+    max-width: 1000px;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 100px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.img-card-home{
+    display: none;
+}
+
+.padded-5-rem{
+    padding-bottom: 5rem;
+}
+
+.part-3-body{
+    padding: 3rem 5% 0 5%;
+    background-color: white;
+    border-radius: 70% 0 30% 0;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .align-centered-phone{
+        display: flex;
+        justify-content: center;
+    }
+
+    .flex-sp-bt{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .img-card-home{
+        max-height: 500px;
+        border-radius: 150px 60px;
+        padding: 2rem;
+        display: block;
+    }
+    
+    .title-cye-1st{
+        color: #214371;
+        font-weight: bolder ;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .text-cye-1st{
+        color: #214371;
+        font-size: 15px;
+    }
+
+    .paragraph-limit{
+        max-width: 400px;
+    }
+
+
+    
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .title-cye-1st{
+        color: #214371;
+        font-weight: bolder ;
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .text-cye-1st{
+        color: #214371;
+        font-size: 20px;
+    }
+
+    .paragraph-limit{
+        max-width: 600px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .part-3-body{
+        padding: 3rem 5% 0 5%;
+        background-color: white;
+        border-radius: 70% 0 50% 0;
+    }
+
+    .button-home{
+        background-color: #214371;
+        color: white;
+        border-radius: 30px;
+        width: 300px;
+        border: unset;
+        height: 60px;
+        text-decoration: underline;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Inter';
+    }
+    .title-cye-1st{
+        color: #214371;
+        font-weight: bolder ;
+        font-size: 5rem;
+        margin-bottom: 2rem;
+    }
+
+    .text-cye-1st{
+        color: #214371;
+        font-size: 25px;
+    }
+
+    .paragraph-limit{
+        max-width: 800px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

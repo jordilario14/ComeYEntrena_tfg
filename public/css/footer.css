@@ -1,0 +1,13 @@
+.footer-cye{
+    padding: 1rem 5% 0 5%;
+}
+
+.hr-separador-blanco{
+    border: 3px solid #fff;
+    /* width: 90%; */
+    opacity: 1 !important;
+}
+
+.footer-font{
+    color: white;
+}
