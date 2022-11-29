@@ -3,21 +3,31 @@
 @section('content')
 
 <div class="part-1-body">
-    <h1 class="title-cye-1st">
-        Una buena preparación <br> requiere buena nutrición.
-    </h1>
 
-    <p class="text-cye-1st margin-bottom-2 paragraph-limit">
-        En Come y Entrena creemos que la base de un buen entreno 
-        requiere prepararse correctamente y seguir una dieta
-        personalizada. Gracias a nuestro servicio podrás acceder
-        fácilmente al plan de entrenamiento y nutricional asignado
-        por tu nutricionista.
-    </p>
-
-    <div class="w-100 align-centered-phone">
-        <button type="button" class="button-home" id="login-link-body">Comenzar rutina</button>
+    <div class="flex-custom">
+        <div>
+            <h1 class="title-cye-1st">
+                Una buena preparación <br> requiere buena nutrición.
+            </h1>
+        
+            <p class="text-cye-1st margin-bottom-2 paragraph-limit">
+                En Come y Entrena creemos que la base de un buen entreno 
+                requiere prepararse correctamente y seguir una dieta
+                personalizada. Gracias a nuestro servicio podrás acceder
+                fácilmente al plan de entrenamiento y nutricional asignado
+                por tu nutricionista.
+            </p>
+        
+            <div class="w-100 align-centered-phone">
+                <button type="button" class="button-home" id="login-link-body">Comenzar rutina</button>
+            </div>
+        
+        </div>
+        <div class="hide-on-small-md">
+            <img class="home-img-nut" src="{{ asset('img/inicio_img.png') }}" alt="">
+        </div>
     </div>
+    
 
     <div class="w-100 flex-centered">
         <div class="vl"></div>
