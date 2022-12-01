@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+//Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/', function () {
     return view('includes.body');
 })->name('index');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('login', [App\Http\Controllers\AuthController::class, 'login_action'])->name('auth.login');//checked
+Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout_action'])->name('auth.logout');

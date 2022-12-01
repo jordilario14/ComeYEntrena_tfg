@@ -2,32 +2,32 @@
 
 @section('content')
 
-<div class="part-1-body padded-top-8">
+<div class="part-1-body">
 
     <div class="flex-custom">
         <div>
             <h1 class="title-cye-1st" id="main-title">
                 Una buena preparación <br> requiere buena nutrición.
             </h1>
-        
+
             <p class="text-cye-1st margin-bottom-2 paragraph-limit justified-left">
-                En Come y Entrena creemos que la base de un buen entreno 
+                En Come y Entrena creemos que la base de un buen entreno
                 requiere prepararse correctamente y seguir una dieta
                 personalizada. Gracias a nuestro servicio podrás acceder
                 fácilmente al plan de entrenamiento y nutricional asignado
                 por tu nutricionista.
             </p>
-        
+
             <div class="w-100 align-centered-phone">
                 <button type="button" class="button-home" id="login-link-body">Comenzar rutina</button>
             </div>
-        
+
         </div>
         <div class="hide-on-small-md">
             <img class="home-img-nut" src="{{ asset('img/inicio_img.png') }}" alt="">
         </div>
     </div>
-    
+
 
     <div class="w-100 flex-centered" id="about-title">
         <div class="vl"></div>
@@ -103,11 +103,11 @@
                 <h1 class="title-cye-card">
                     Jordi Segura Lario
                 </h1>
-    
+
                 <p class="text-cye-default margin-bottom-2 paragraph-limit text-left">
                     Preparador personal con 4 años de experiencia. Certificado por NCSA.
                 </p>
-    
+
             </div>
         </div>
     </div>
@@ -120,7 +120,7 @@
         <h1 class="title-cye flex-centered" id="location-title">
             ¿Dónde estamos?
         </h1>
-    
+
         <div class="flex-centered padded-5-rem">
             <p class="text-cye-default margin-bottom-2 paragraph-limit text-center">
                 Actualmente no disponemos de sedes físicas, cualquier duda o consulta será respondida a través de nuestras redes i nuestro correo electrónico.

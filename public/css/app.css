@@ -3,71 +3,69 @@
     font-family: "Inter";
 }
 
-.justified-left{
+.justified-left {
     text-align: justify;
 }
 
-html, body {
+html,
+body {
     font-family: "Inter" !important;
 }
 
-body{
+body {
     background-color: #214371;
 }
 
-header{
+header {
     background-color: white;
 }
 
-footer{
-    padding-top:5rem
+footer {
+    padding-top: 5rem
 }
 
-.flexbox-column{
+.flexbox-column {
     display: flex;
     justify-content: center;
 }
 
-.title-cye{
+.title-cye {
     color: #214371;
-    font-weight: bolder ;
+    font-weight: bolder;
     font-size: 45px;
     margin-bottom: 2rem;
 }
 
-.title-cye-1st{
+.title-cye-1st {
     color: #214371;
-    font-weight: bolder ;
+    font-weight: bolder;
     font-size: 3rem;
     margin-bottom: 2rem;
 }
 
-.title-cye-white{
+.title-cye-white {
     text-align: center;
     padding-top: 1rem;
     color: #fff;
-    font-weight: bolder ;
+    font-weight: bolder;
     font-size: 45px;
     margin-bottom: 2rem;
 }
 
-.part-1-body{
+.part-1-body {
     padding: 3rem 5% 0 5%;
     background-color: white;
 }
 
-.text-cye-default{
+.text-cye-default {
     color: #214371;
 }
 
-
-
-.margin-bottom-2{
+.margin-bottom-2 {
     margin-bottom: 2rem;
 }
 
-
-.button-home{
+.button-home {
     background-color: #214371;
     color: white;
     border-radius: 30px;
@@ -80,43 +78,41 @@ footer{
     font-family: 'Inter';
 }
 
-.button-home:hover{
+.button-home:hover {
     background-color: #336dbe;
 }
 
-.button-home:active{
+.button-home:active {
     background-color: #0f233f;
 }
 
 .vl {
-    margin: 4% 0 ;
-    border-left: 4px solid #214371 ;
-    height: 50px;
-  }
-
-.vl-white {
-    margin: 4% 0 ;
-    border-left: 4px solid #fff ;
+    margin: 4% 0;
+    border-left: 4px solid #214371;
     height: 50px;
 }
 
-.flex-centered{
+.vl-white {
+    margin: 4% 0;
+    border-left: 4px solid #fff;
+    height: 50px;
+}
+
+.flex-centered {
     display: flex;
     justify-content: center;
 }
 
-
-
-.img_home{
+.img_home {
     max-height: 150px;
 }
 
-.flex-sp-bt{
+.flex-sp-bt {
     display: flex;
     justify-content: space-evenly;
 }
 
-.text-home-img{
+.text-home-img {
     color: white;
     font-weight: bold;
     display: flex;
@@ -125,17 +121,14 @@ footer{
     padding-top: 1rem;
 }
 
-
-
-
-.title-cye-card{
+.title-cye-card {
     color: #214371;
-    font-weight: bolder ;
+    font-weight: bolder;
     font-size: 45px;
     padding-top: 2rem;
 }
 
-.card-custom-home{
+.card-custom-home {
     max-width: 1000px;
     padding: 3rem;
     background-color: white;
@@ -143,117 +136,114 @@ footer{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.img-card-home{
+.img-card-home {
     display: none;
 }
 
-.padded-5-rem{
+.padded-5-rem {
     padding-bottom: 5rem;
 }
 
-.padded-top-8{
+.padded-top-8 {
     padding-top: 8rem;
 }
 
-
-.part-3-body{
+.part-3-body {
     padding: 3rem 5% 0 5%;
     background-color: white;
     border-radius: 70% 0 30% 0;
 }
 
-.home-img-nut{
-    max-width: 700px;       
+.home-img-nut {
+    max-width: 700px;
 }
 
-.flex-custom{
+.flex-custom {
     display: flex;
     justify-content: space-between;
 }
 
+
 /* Extra small devices (phones, 600px and down) */
+
 @media only screen and (max-width: 600px) {
-    .hide-on-small-md{
+    .hide-on-small-md {
         display: none
     }
-    .flex-centered{
+    .flex-centered {
         text-align: center;
     }
-    .text-cye-1st{
+    .text-cye-1st {
         color: #214371;
         font-size: 15px;
     }
-    .align-centered-phone{
+    .align-centered-phone {
         display: flex;
         justify-content: center;
     }
-
-    .flex-sp-bt{
+    .flex-sp-bt {
         display: flex;
         flex-direction: column;
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
 
-    .hide-on-small-md{
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .hide-on-small-md {
         display: none
     }
-    .title-cye-1st{
+    .title-cye-1st {
         color: #214371;
-        font-weight: bolder ;
+        font-weight: bolder;
         font-size: 3rem;
         margin-bottom: 2rem;
     }
-
-    .text-cye-1st{
+    .text-cye-1st {
         color: #214371;
         font-size: 15px;
     }
-
-    .paragraph-limit{
+    .paragraph-limit {
         max-width: 400px;
     }
-
-
-    
 }
 
+
 /* Medium devices (landscape tablets, 768px and up) */
+
 @media only screen and (min-width: 768px) {
-    .img-card-home{
+    .img-card-home {
         max-height: 500px;
         border-radius: 150px 60px;
         padding: 2rem;
         display: block;
     }
-    .title-cye-1st{
+    .title-cye-1st {
         color: #214371;
-        font-weight: bolder ;
+        font-weight: bolder;
         font-size: 4rem;
         margin-bottom: 2rem;
     }
-
-    .text-cye-1st{
+    .text-cye-1st {
         color: #214371;
         font-size: 20px;
     }
-
-    .paragraph-limit{
+    .paragraph-limit {
         max-width: 600px;
     }
 }
 
+
 /* Large devices (laptops/desktops, 992px and up) */
+
 @media only screen and (min-width: 992px) {
-    .part-3-body{
+    .part-3-body {
         padding: 3rem 5% 0 5%;
         background-color: white;
         border-radius: 70% 0 50% 0;
     }
-
-    .button-home{
+    .button-home {
         background-color: #214371;
         color: white;
         border-radius: 30px;
@@ -265,26 +255,26 @@ footer{
         font-weight: bold;
         font-family: 'Inter';
     }
-    .title-cye-1st{
+    .title-cye-1st {
         color: #214371;
-        font-weight: bolder ;
+        font-weight: bolder;
         font-size: 5rem;
         margin-bottom: 2rem;
     }
-
-    .text-cye-1st{
+    .text-cye-1st {
         color: #214371;
         font-size: 25px;
     }
-
-    .paragraph-limit{
+    .paragraph-limit {
         max-width: 800px;
     }
 }
 
+
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+
 @media only screen and (min-width: 1250px) {
-    .hide-on-small-md{
+    .hide-on-small-md {
         display: block
     }
 }

@@ -3,15 +3,21 @@
     font-family: "Inter";
 }
 
+a.text-cye-default {
+    text-decoration: none !important;
+}
 
+body {
+    padding-right: 0px !important;
+}
 
-.title-main{
+.title-main {
     font-weight: bold;
     font-size: 30px;
     color: #214371;
 }
 
-.title-main:hover{
+.title-main:hover {
     cursor: pointer;
 }
 
@@ -22,15 +28,15 @@
     margin-bottom: 0 !important;
 }
 
-.margin-left-5{
+.margin-left-5 {
     margin-left: 5%;
 }
 
-.margin-right-5{
+.margin-right-5 {
     margin-right: 5%;
 }
 
-.logIn:hover{
+.logIn:hover {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -39,24 +45,24 @@
     border-radius: 1rem !important;
 }
 
-.modal-header{
+.modal-header {
     background-color: #214371;
     border-radius: 1rem 1rem 0rem 0rem !important;
 }
 
-.modal-title{
+.modal-title {
     color: white;
     font-weight: bold;
 }
 
-.input-label{
+.input-label {
     width: 100%;
     margin-bottom: 1%;
     color: #214371;
     font-weight: 700;
 }
 
-.input{
+.input {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -68,29 +74,28 @@
     margin-bottom: 4%;
 }
 
-.input:focus{
+.input:focus {
     outline: none;
     border: 1px solid #3e7dd4;
     color: #214371;
-
 }
 
-.small-password{
+.small-password {
     width: 100%;
     font-size: 10px;
     color: #214371;
 }
 
-.small-password:hover{
+.small-password:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.margin-0-impt{
+.margin-0-impt {
     margin: 0% !important;
 }
 
-.button-modal-accept{
+.button-modal-accept {
     background-color: #214371;
     color: white;
     border-radius: 20px;
@@ -100,67 +105,62 @@
     text-decoration: underline;
 }
 
-.button-modal-accept:hover{
+.button-modal-accept:hover {
     background-color: #336dbe;
 }
 
-.button-modal-accept:active{
+.button-modal-accept:active {
     background-color: #0f233f;
 }
 
-.button-modal-cancel{
+.button-modal-cancel {
     color: #214371;
     border: unset;
     background-color: transparent;
 }
 
-.button-modal-cancel:hover{
+.button-modal-cancel:hover {
     text-decoration: underline;
-
 }
 
-.zero-padding{
+.zero-padding {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-.header-cye{
+.header-cye {
     padding: 1rem 5% 0 5%;
     position: fixed;
     background-color: white;
     width: 100%;
-
 }
 
-.w-100{
+.w-100 {
     width: 100%;
 }
 
-
 @media screen and (min-width: 992px) {
-    .pl2{
+    .pl2 {
         padding-left: 2rem;
     }
-    
-    .pr2{
+    .pr2 {
         padding-right: 2rem;
     }
-    
-    .plr2{
+    .plr2 {
         padding: 0 2rem 0 2rem;
     }
 }
 
-.separated-flex{
+.separated-flex {
     display: flex;
     justify-content: space-between;
 }
 
 .custom-toggler.navbar-toggler {
-  border: none;
-} 
+    border: none;
+}
 
-.custom-toggler:focus{
+.custom-toggler:focus {
     border: none;
 }
 

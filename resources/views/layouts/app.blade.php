@@ -35,7 +35,7 @@
             @include('includes.header')
 
         </header>
-        <main>
+        <main class="padded-top-8">
             @yield('content')
         </main>
         <footer>
