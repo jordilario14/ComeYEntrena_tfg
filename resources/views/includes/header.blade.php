@@ -2,7 +2,7 @@
   <div class="zero-padding container-fluid margin-right-5 separated-flex">
     <div>
       <span href="{{ route('index') }}" class="title-main">
-        Come y Entrena
+        Come y Entrenaa
       </span>
     </div>
 
