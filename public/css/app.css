@@ -3,17 +3,128 @@
     font-family: "Inter";
 }
 
+.button-img-home-img-1:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+.button-img-home-img-2:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+.button-img-home-img-3:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+.button-img-home-img-1:active {
+    filter: brightness(0.3);
+    cursor: pointer;
+}
+
+.button-img-home-img-2:active {
+    filter: brightness(0.3);
+    cursor: pointer;
+}
+
+.button-img-home-img-3:active {
+    filter: brightness(0.3);
+    cursor: pointer;
+}
+
+.img-col-2 {
+    max-height: 350px;
+    border-radius: inherit;
+}
+
+.title-home-white {
+    font-weight: bold;
+    color: white;
+}
+
+.mb-4-phone {
+    margin-bottom: 1rem;
+}
+
+.row-custom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+
+/* .button-img-home-img-1,
+.button-img-home-img-2,
+.button-img-home-img-3 {
+    box-shadow: inset 0 0 15px 10px black;
+    height: 150px;
+    width: 200px;
+    padding: 50px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+ */
+
+.button-img-home-img-1 {
+    box-shadow: inset 0 0 15px 10px black;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+    width: 200px;
+    background-image: url('/img/discos.jpg');
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.button-img-home-img-2 {
+    box-shadow: inset 0 0 15px 10px black;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+    width: 200px;
+    background-image: url('/img/nutricion.jpg');
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.button-img-home-img-3 {
+    box-shadow: inset 0 0 15px 10px black;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+    width: 200px;
+    background-image: url('/img/gimnasio.jpg');
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.column {
+    display: flex;
+    /* flex-direction: column; */
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.column-center-img-1 {
+    justify-content: center;
+}
+
 .justified-left {
     text-align: justify;
+}
+
+.centered-middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 html,
 body {
     font-family: "Inter" !important;
-}
-
-body {
-    background-color: #214371;
 }
 
 header {
@@ -145,7 +256,7 @@ footer {
 }
 
 .padded-top-8 {
-    padding-top: 8rem;
+    padding-top: 5rem;
 }
 
 .part-3-body {
@@ -181,6 +292,11 @@ footer {
         display: flex;
         justify-content: center;
     }
+    .text-align-centered-phone {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
     .flex-sp-bt {
         display: flex;
         flex-direction: column;
@@ -191,6 +307,36 @@ footer {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {
+    .button-img-home-img-1 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 250px;
+        max-height: 250px;
+        height: 250px;
+        width: 250px;
+        background-image: url('/img/discos.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-2 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 250px;
+        max-height: 250px;
+        height: 250px;
+        width: 250px;
+        background-image: url('/img/nutricion.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-3 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 540px;
+        max-height: 250px;
+        width: 540px;
+        height: 250px;
+        background-image: url('/img/gimnasio.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
     .hide-on-small-md {
         display: none
     }
@@ -238,6 +384,64 @@ footer {
 /* Large devices (laptops/desktops, 992px and up) */
 
 @media only screen and (min-width: 992px) {
+    .padding-left-20px {
+        padding-left: 20px;
+    }
+    .padding-right-20px {
+        padding-right: 20px;
+    }
+    .column-img-2-start {
+        display: flex;
+        /* flex-direction: column; */
+        flex-basis: 100%;
+        flex: 1;
+        justify-content: start;
+    }
+    .column-img-2-end {
+        display: flex;
+        /* flex-direction: column; */
+        flex-basis: 100%;
+        flex: 1;
+        justify-content: end;
+    }
+    .button-img-home-img-1 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 350px;
+        max-height: 350px;
+        height: 350px;
+        width: 350px;
+        background-image: url('/img/discos.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-2 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 350px;
+        max-height: 350px;
+        height: 350px;
+        width: 350px;
+        background-image: url('/img/nutricion.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-3 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 740px;
+        max-height: 350px;
+        width: 740px;
+        height: 350px;
+        background-image: url('/img/gimnasio.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .img-col-1 {
+        max-width: 740px;
+        border-radius: inherit;
+    }
+    .flex-img-2 {
+        display: flex;
+        justify-content: space-evenly;
+    }
     .part-3-body {
         padding: 3rem 5% 0 5%;
         background-color: white;
@@ -274,6 +478,36 @@ footer {
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
 @media only screen and (min-width: 1250px) {
+    .button-img-home-img-1 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 450px;
+        max-height: 450px;
+        height: 450px;
+        width: 450px;
+        background-image: url('/img/discos.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-2 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 450px;
+        max-height: 450px;
+        height: 450px;
+        width: 450px;
+        background-image: url('/img/nutricion.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-3 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 940px;
+        max-height: 450px;
+        width: 940px;
+        height: 450px;
+        background-image: url('/img/gimnasio.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
     .hide-on-small-md {
         display: block
     }

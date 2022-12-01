@@ -29,7 +29,14 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.3/jquery.scrollTo.min.js"></script>
 
 </head>
-<body>
+<body
+@if (Request::is('/'))
+style="background-color: #214371"
+@else
+style="background-color: #fff"
+@endif
+
+>
     <div id="app">
         <header>
             @include('includes.header')
@@ -38,9 +45,16 @@
         <main class="padded-top-8">
             @yield('content')
         </main>
-        <footer>
-            @include('includes.footer')
-        </footer>
+        @if (Request::is('/'))
+            <footer>
+                @include('includes.footer')
+            </footer>
+        @else
+            <footer style="background-color: white">
+                @include('includes.footer_alt')
+            </footer>
+        @endif
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
