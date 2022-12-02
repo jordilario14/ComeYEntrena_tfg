@@ -16,7 +16,6 @@
 }
 
 .table-design{
-    width: 100%;
     padding: 2rem;
 }
 
@@ -43,9 +42,9 @@
 }
 
 .table-design thead {
-    font-weight: bold;
-    color: #0f233f;
-    border-bottom: 3px solid #0f233f;
+    font-weight: bold !important;
+    color: #0f233f !important;
+    border-bottom: 3px solid #0f233f !important; 
 }
 
 .table-design thead tr{

@@ -13,6 +13,41 @@
     </div>
 
     <div class="class-table-div text-left">
+
+        <table class="table table-design">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Grupo muscular</th>
+                <th scope="col" class="text-right">  
+                    <div class="button-table">
+                        <img class="icon-button-table" src="{{ asset('img/icons/add.png') }}" alt="">
+                    </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
         <table class="table-design">
             <thead>
                     <td class="padded-1-rem">
