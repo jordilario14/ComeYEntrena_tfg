@@ -21,6 +21,10 @@ $(document).ready(function() {
 
         let _token = $('meta[name="csrf-token"]').attr('content');
 
+        $("#loading-login-hidden").removeClass("loading-login-hidden");
+        //$("#login-modal").addClass("disabled");
+
+        
         $.ajax({
             url: "/login",
             type: "POST",
@@ -30,12 +34,13 @@ $(document).ready(function() {
                 _token: _token
             },
             success: function(response) {
-                console.log(response.messages);
+                $("#loading-login-hidden").addClass("loading-login-hidden");
+
                 if (response.logged == true) {
                     location.href = "/home";
                 } else {
                     let check = `${Object.keys(response.messages)[0]}`;
-                    console.log(check);
+                    
                     switch (check) {
                         case "email":
                         case "password":
@@ -45,6 +50,8 @@ $(document).ready(function() {
                             alert(response.messages);
                             break;
                     }
+
+                    
                 }
 
                 _token = response.token;
@@ -52,7 +59,7 @@ $(document).ready(function() {
             },
             error: function(error) {
                 alert("Ha habido un error durante la comunicación con el servidor.");
-
+                $("#loading-login-hidden").addClass("loading-login-hidden");
             }
         });
 

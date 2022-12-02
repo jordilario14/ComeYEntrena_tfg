@@ -10,7 +10,7 @@
 
     <div class="row-custom mb-4-phone">
         <div class="column-img-2-end padding-right-20px mb-4-phone">
-            <div class="button-img-home-img-1 centered-middle">
+            <div class="button-img-home-img-1 centered-middle" onclick="location.href='{{ route('exercises') }}'">
                 <h1 class="title-home-white">
                     Ejercicios
                  </h1>

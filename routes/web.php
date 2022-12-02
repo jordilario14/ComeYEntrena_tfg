@@ -21,7 +21,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', function () {
     return view('includes.body');
-})->name('index');
+})->name('index')->middleware('checkGuest');
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login_action'])->name('auth.login');//checked
 Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout_action'])->name('auth.logout');
+
+
+Route::get('exercises', [App\Http\Controllers\TrainerController::class, 'exercises_index'])->name('exercises');
