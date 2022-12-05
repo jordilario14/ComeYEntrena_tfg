@@ -69,7 +69,6 @@ $(document).ready(function() {
 
     
     $(".add-exercise-button").on("click", function() {
-        let exercise = parseInt($(this).attr('target'));
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: "/add-exercise",
@@ -95,7 +94,7 @@ $(document).ready(function() {
     });
 
     $(".edit-exercise-button").on("click", function() {
-        let exercise = parseInt($(this).attr('target'));
+        
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: "/edit-exercise",
