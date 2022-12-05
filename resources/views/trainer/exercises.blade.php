@@ -19,7 +19,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Grupo muscular</th>
+                <th scope="col" class="hide-on-small-md-table">Grupo muscular</th>
                 <th scope="col" class="text-right">  
                     <div class="button-table">
                         <img class="icon-button-table" src="{{ asset('img/icons/add.png') }}" alt="">
@@ -28,44 +28,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+                @forelse ($ejercicios as $key=>$ejercicio)
+                    <tr>
+                        <th scope="row"> {{$ejercicio->id}} </th>
+                        <td>{{$ejercicio->name}}</td>
+                        <td class="hide-on-small-md-table">{{$ejercicio->muscle_group}}</td>
+                        <td class="text-right">
+                            <div class="button-table">
+                                <img class="icon-button-table" src="{{ asset('img/icons/view.png') }}" alt="">
+                                <img class="icon-button-table" src="{{ asset('img/icons/edit.png') }}" alt="">
+                                <img class="icon-button-table" src="{{ asset('img/icons/remove.png') }}" alt="">
+
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <td>No hay ejercicios en la base de datos.</td>
+                @endforelse
+
             </tbody>
           </table>
-        <table class="table-design">
-            <thead>
-                    <td class="padded-1-rem">
-                        #
-                    </td>
-                    <td class="padded-1-rem">
-                        Nombre
-                    </td>
-                    <td class="padded-1-rem">
-                        Grupo muscular
-                    </td>
-                    <td class="padded-1-rem text-right">
-                        <div class="button-table">
-                            <img class="icon-button-table" src="{{ asset('img/icons/add.png') }}" alt="">
-                        </div>
-                    </td>
-            </thead>
-        </table>
     </div>
 </div>
 

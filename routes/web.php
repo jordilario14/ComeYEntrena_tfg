@@ -28,3 +28,6 @@ Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout_action
 
 
 Route::get('exercises', [App\Http\Controllers\TrainerController::class, 'exercises_index'])->name('exercises');
+Route::post('remove-exercise', [App\Http\Controllers\TrainerController::class, 'remove_exercise'])->name('remove_exercise');
+Route::post('add-exercise', [App\Http\Controllers\TrainerController::class, 'add_exercise'])->name('add_exercise');
+Route::post('edit-exercise', [App\Http\Controllers\TrainerController::class, 'edit_exercise'])->name('edit_exercise');

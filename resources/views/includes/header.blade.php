@@ -57,7 +57,7 @@
     <hr class="hr-separador">
 </nav>
 
-
+@guest
 <div class="modal" tabindex="-1" id="login-modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -95,3 +95,4 @@
         </div>
     </div>
 </div>
+@endguest
