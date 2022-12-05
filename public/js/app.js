@@ -9,6 +9,14 @@ $(document).ready(function() {
         modal_add_exercise.toggle();
     });
 
+    $(".addAliment").on("click", function() {
+        let modal_add_exercise = new bootstrap.Modal(document.getElementById('add-aliment-modal'), {
+            keyboard: false
+        })
+        modal_add_exercise.toggle();
+    });
+    
+
     $(".editExercise").on("click", function() {
 
         let target = $(this).attr('target');

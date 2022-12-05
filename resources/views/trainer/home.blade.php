@@ -20,7 +20,7 @@
         </div>
 
         <div class="column-img-2-start padding-left-20px mb-4-phone">
-            <div class="button-img-home-img-2 centered-middle">
+            <div class="button-img-home-img-2 centered-middle" onclick="location.href='{{ route('aliments') }}'">
                 <h1 class="title-home-white">
                    Alimentos
                 </h1>

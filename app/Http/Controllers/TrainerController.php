@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Exercise;
+use App\Models\Aliment;
 
 class TrainerController extends Controller
 {
@@ -28,6 +29,13 @@ class TrainerController extends Controller
         $ejercios = Exercise::get();
        
         return view('trainer.exercises')->with(['ejercicios' => $ejercios]);
+    }
+
+    public function aliments_index(Request $request)
+    {
+        $aliments = Aliment::get();
+       
+        return view('trainer.aliments')->with(['alimentos' => $aliments]);
     }
 
     public function remove_exercise(Request $request)
