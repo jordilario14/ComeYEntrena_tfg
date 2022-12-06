@@ -30,10 +30,10 @@
             <tbody>
                 @forelse ($ejercicios as $key=>$ejercicio)
                     <tr>
-                        <th scope="row"> {{$ejercicio->id}} </th>
-                        <td>{{$ejercicio->name}}</td>
-                        <td class="hide-on-small-md-table">{{$ejercicio->muscle_group}}</td>
-                        <td class="text-right">
+                        <th class="text-cye-default" scope="row"> {{$ejercicio->id}} </th>
+                        <td class="text-cye-default">{{$ejercicio->name}}</td>
+                        <td class="hide-on-small-md-table text-cye-default">{{$ejercicio->muscle_group}}</td>
+                        <td class="text-right text-cye-default">
                             <div class="button-table">
                                 <img class="icon-button-table viewExercise" target="{{$key}}" src="{{ asset('img/icons/view.png') }}" alt="">
                                 <img class="icon-button-table editExercise" target="{{$key}}" src="{{ asset('img/icons/edit.png') }}" alt="">
@@ -122,7 +122,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar ejercicio</h5>
+                    <h5 class="modal-title">Ver ejercicio</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

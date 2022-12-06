@@ -33,6 +33,25 @@ $(document).ready(function() {
         modal_add_exercise.toggle();
     });
 
+    $(".editAliment").on("click", function() {
+
+        let target = $(this).attr('target');
+        let object = aliments[parseInt(target)];
+        
+        $("#name-edit").val(object['name']);
+        $("#kcal-edit").val(object['kcal']);
+        $("#prot-edit").val(object['protein']);
+        $("#lip-edit").val(object['lipids']);
+        $("#gluc-edit").val(object['glucids']);
+        $("#aliment-id-edit").val(object['id']);
+
+
+        let modal_add_exercise = new bootstrap.Modal(document.getElementById('edit-aliment-modal'), {
+            keyboard: false
+        })
+        modal_add_exercise.toggle();
+    });
+
     $(".viewExercise").on("click", function() {
 
         let target = $(this).attr('target');
@@ -42,6 +61,22 @@ $(document).ready(function() {
         $("#muscle-group-view").html(object['muscle_group']);
 
         let modal_add_exercise = new bootstrap.Modal(document.getElementById('view-exercise-modal'), {
+            keyboard: false
+        })
+        modal_add_exercise.toggle();
+    });
+
+    $(".viewAliment").on("click", function() {
+
+        let target = $(this).attr('target');
+        let object = aliments[parseInt(target)];
+        console.log(object);
+        $("#name-view").html(object['name']);
+        $("#kcal-view").html(object['kcal']);
+        $("#prot-view").html(object['protein']);
+        $("#gluc-view").html(object['glucids']);
+        $("#lip-view").html(object['lipids']);
+        let modal_add_exercise = new bootstrap.Modal(document.getElementById('view-aliment-modal'), {
             keyboard: false
         })
         modal_add_exercise.toggle();
@@ -75,6 +110,32 @@ $(document).ready(function() {
         }
     });
 
+    $(".removeAliment").on("click", function() {
+        if (confirm('¿Está seguro de que desea eliminar este alimento?')) {
+            let aliment = parseInt($(this).attr('target'));
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/remove-aliment",
+                type: "POST",
+                data: {
+                    aliment: aliment,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error==false) {
+                        alert("Alimento eliminado correctamente.");
+                        location.href = response.route;
+                    }else{
+                        alert(response.messages);
+                    }
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+
+        }
+    });
     
     $(".add-exercise-button").on("click", function() {
         let _token = $('meta[name="csrf-token"]').attr('content');
@@ -138,6 +199,76 @@ $(document).ready(function() {
         });
     });
     
+    $(".add-aliment-button").on("click", function() {
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/add-aliment",
+            type: "POST",
+            data: {
+                name: $("#name-add").val(),
+                kcalories: parseInt($("#kcal-add").val()),
+                protein: parseInt($("#prot-add").val()),
+                lipids: parseInt($("#lip-add").val()),
+                glucids: parseInt($("#gluc-add").val()),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error==false) {
+                    alert("Alimento creado correctamente.");
+                    location.href = response.route;
+                }else{
+                    let check = `${Object.keys(response.messages)[0]}`;
+                    alert(response.messages[check]);
+
+                }
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+    $(".edit-aliment-button").on("click", function() {
+        
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/edit-aliment",
+            type: "POST",
+            data: {
+                name: $("#name-edit").val(),
+                kcalories: parseInt($("#kcal-edit").val()),
+                protein: parseInt($("#prot-edit").val()),
+                lipids: parseInt($("#lip-edit").val()),
+                glucids: parseInt($("#gluc-edit").val()),
+                aliment: parseInt($("#aliment-id-edit").val()),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error==false) {
+                    alert("Alimento modificado correctamente.");
+                    location.href = response.route;
+                }else{
+                    let check = `${Object.keys(response.messages)[0]}`;
+                    
+                     switch (check) {
+                        case "name":
+                        case "kcalories":
+                        case "protein":
+                        case "glucids":
+                        case "lipids":
+                            alert(response.messages[check]);
+                            break;
+                        default:
+                            alert(response.messages);
+                            break;
+                    } 
+                }
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
 
 
     $(".searchTerm").on("keyup", function() {

@@ -29,9 +29,9 @@
             <tbody>
                 @forelse ($alimentos as $key=>$alimento)
                     <tr>
-                        <th scope="row"> {{$alimento->id}} </th>
-                        <td>{{$alimento->name}}</td>
-                        <td class="text-right">
+                        <th class="text-cye-default" scope="row"> {{$alimento->id}} </th>
+                        <td class="text-cye-default">{{$alimento->name}}</td>
+                        <td class="text-right text-cye-default">
                             <div class="button-table">
                                 <img class="icon-button-table viewAliment" target="{{$key}}" src="{{ asset('img/icons/view.png') }}" alt="">
                                 <img class="icon-button-table editAliment" target="{{$key}}" src="{{ asset('img/icons/edit.png') }}" alt="">
@@ -66,7 +66,7 @@
                     <label for="name-add" class="input-label">Nombre</label>
                     <input type="text" name="name-add" id="name-add" class="input">
     
-                    <label for="kcal-add" class="input-label">Kcal</label>
+                    <label for="kcal-add" class="input-label">Kcal.</label>
                     <input type="number" name="kcal-add" id="kcal-add" class="input">
                     
                     <label for="prot-add" class="input-label">Proteínas (g.)</label>
@@ -104,9 +104,17 @@
                     <label for="name-edit" class="input-label">Nombre</label>
                     <input type="text" name="name-edit" id="name-edit" class="input">
     
-                    <label for="muscle-group-edit" class="input-label">Grupo muscular</label>
-                    <input type="text" name="muscle-group-edit" id="muscle-group-edit" class="input margin-0-impt">
-                    <br>
+                    <label for="kcal-edit" class="input-label">Kcal.</label>
+                    <input type="number" name="kcal-edit" id="kcal-edit" class="input">
+                    
+                    <label for="prot-edit" class="input-label">Proteínas (g.)</label>
+                    <input type="number" name="prot-edit" id="prot-edit" class="input ">
+
+                    <label for="lip-edit" class="input-label">Lípidos (g.)</label>
+                    <input type="number" name="lip-edit" id="lip-edit" class="input ">
+
+                    <label for="gluc-edit" class="input-label">Glúcidos (g.)</label>
+                    <input type="number" name="gluc-edit" id="gluc-edit" class="input margin-0-impt">
                 </div>
 
                 <input type="hidden" name="aliment-id-edit" id="aliment-id-edit" class="aliment-id-edit">
@@ -128,7 +136,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar alimento</h5>
+                    <h5 class="modal-title">Ver alimento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -137,9 +145,22 @@
                     <span class="name-view text-cye-default" id="name-view" name="name-view">
                     </span>
     
-                    <label for="muscle-group-view" class="input-label">Grupo muscular: </label>
-                    <span class="muscle-group-view text-cye-default" id="muscle-group-view" name="muscle-group-view">
+                    <label for="kcal-view" class="input-label">KCal.: </label>
+                    <span class="kcal-view text-cye-default" id="kcal-view" name="kcal-view">
                     </span>
+
+                    <label for="prot-view" class="input-label">Proteinas (g.): </label>
+                    <span class="prot-view text-cye-default" id="prot-view" name="prot-view">
+                    </span>
+
+                    <label for="lip-view" class="input-label">Lípidos (g.): </label>
+                    <span class="lip-view text-cye-default" id="lip-view" name="lip-view">
+                    </span>
+
+                    <label for="gluc-view" class="input-label">Glúcidos (g.): </label>
+                    <span class="gluc-view text-cye-default" id="gluc-view" name="gluc-view">
+                    </span>
+
 
                 </div>
     

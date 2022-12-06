@@ -33,3 +33,6 @@ Route::post('add-exercise', [App\Http\Controllers\TrainerController::class, 'add
 Route::post('edit-exercise', [App\Http\Controllers\TrainerController::class, 'edit_exercise'])->name('edit_exercise');
 
 Route::get('aliments', [App\Http\Controllers\TrainerController::class, 'aliments_index'])->name('aliments');
+Route::post('remove-aliment', [App\Http\Controllers\TrainerController::class, 'remove_aliment'])->name('remove_aliment');
+Route::post('add-aliment', [App\Http\Controllers\TrainerController::class, 'add_aliment'])->name('add_aliment');
+Route::post('edit-aliment', [App\Http\Controllers\TrainerController::class, 'edit_aliment'])->name('edit_aliment');
