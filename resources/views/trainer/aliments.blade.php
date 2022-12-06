@@ -30,7 +30,7 @@
                 @forelse ($alimentos as $key=>$alimento)
                     <tr>
                         <th class="text-cye-default" scope="row"> {{$alimento->id}} </th>
-                        <td class="text-cye-default">{{$alimento->name}}</td>
+                        <td class="text-cye-default wrap-text">{{$alimento->name}}</td>
                         <td class="text-right text-cye-default">
                             <div class="button-table">
                                 <img class="icon-button-table viewAliment" target="{{$key}}" src="{{ asset('img/icons/view.png') }}" alt="">
@@ -142,23 +142,23 @@
                 <div class="modal-body">
          
                     <label for="name-view" class="input-label">Nombre: </label>
-                    <span class="name-view text-cye-default" id="name-view" name="name-view">
+                    <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
     
                     <label for="kcal-view" class="input-label">KCal.: </label>
-                    <span class="kcal-view text-cye-default" id="kcal-view" name="kcal-view">
+                    <span class="kcal-view text-cye-default wrap-text" id="kcal-view" name="kcal-view">
                     </span>
 
                     <label for="prot-view" class="input-label">Proteinas (g.): </label>
-                    <span class="prot-view text-cye-default" id="prot-view" name="prot-view">
+                    <span class="prot-view text-cye-default wrap-text" id="prot-view" name="prot-view">
                     </span>
 
                     <label for="lip-view" class="input-label">Lípidos (g.): </label>
-                    <span class="lip-view text-cye-default" id="lip-view" name="lip-view">
+                    <span class="lip-view text-cye-default wrap-text" id="lip-view" name="lip-view">
                     </span>
 
                     <label for="gluc-view" class="input-label">Glúcidos (g.): </label>
-                    <span class="gluc-view text-cye-default" id="gluc-view" name="gluc-view">
+                    <span class="gluc-view text-cye-default wrap-text" id="gluc-view" name="gluc-view">
                     </span>
 
 

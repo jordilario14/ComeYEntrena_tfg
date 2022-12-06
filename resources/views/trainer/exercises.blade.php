@@ -31,8 +31,8 @@
                 @forelse ($ejercicios as $key=>$ejercicio)
                     <tr>
                         <th class="text-cye-default" scope="row"> {{$ejercicio->id}} </th>
-                        <td class="text-cye-default">{{$ejercicio->name}}</td>
-                        <td class="hide-on-small-md-table text-cye-default">{{$ejercicio->muscle_group}}</td>
+                        <td class="text-cye-default wrap-text">{{$ejercicio->name}}</td>
+                        <td class="hide-on-small-md-table text-cye-default wrap-text">{{$ejercicio->muscle_group}}</td>
                         <td class="text-right text-cye-default">
                             <div class="button-table">
                                 <img class="icon-button-table viewExercise" target="{{$key}}" src="{{ asset('img/icons/view.png') }}" alt="">
@@ -128,11 +128,11 @@
                 <div class="modal-body">
          
                     <label for="name-view" class="input-label">Nombre: </label>
-                    <span class="name-view text-cye-default" id="name-view" name="name-view">
+                    <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
     
                     <label for="muscle-group-view" class="input-label">Grupo muscular: </label>
-                    <span class="muscle-group-view text-cye-default" id="muscle-group-view" name="muscle-group-view">
+                    <span class="muscle-group-view text-cye-default wrap-text" id="muscle-group-view" name="muscle-group-view">
                     </span>
 
                 </div>

@@ -42,7 +42,7 @@
         @auth
             <ul class="navbar-nav  mb-2 mb-lg-0 login-ul">
                 <li class="nav-item pr2">
-                    <a class="logIn text-cye-default" href={{ route('home') }}>
+                    <a class="logIn text-cye-default wrap-text" href={{ route('home') }}>
                         {{ Auth::user()->name." ".Auth::user()->surname }}
                     </a>
                 </li>
