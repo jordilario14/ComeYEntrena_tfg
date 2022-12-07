@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('role_id');
-            $table->longText('my_interests');
-            $table->longText('about_me');
+            $table->longText('my_interests')->nullable();
+            $table->longText('about_me')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('name');
-            $table->string('surname');
-            $table->integer('tf_number');
-            $table->float('weight');
-            $table->integer('height');
+            $table->string('surname')->nullable();
+            $table->integer('tf_number')->nullable();
+            $table->float('weight')->nullable();
+            $table->integer('height')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('disabled');
             $table->rememberToken();

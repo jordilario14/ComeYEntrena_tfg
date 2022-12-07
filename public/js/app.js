@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 
     $(".addExercise").on("click", function() {
@@ -10,18 +8,26 @@ $(document).ready(function() {
     });
 
     $(".addAliment").on("click", function() {
-        let modal_add_exercise = new bootstrap.Modal(document.getElementById('add-aliment-modal'), {
+        let modal_add_aliment = new bootstrap.Modal(document.getElementById('add-aliment-modal'), {
             keyboard: false
         })
-        modal_add_exercise.toggle();
+        modal_add_aliment.toggle();
     });
-    
+
+
+    $(".addClient").on("click", function() {
+        let modal_add_client = new bootstrap.Modal(document.getElementById('add-client-modal'), {
+            keyboard: false
+        })
+        modal_add_client.toggle();
+    });
+
 
     $(".editExercise").on("click", function() {
 
         let target = $(this).attr('target');
         let object = exercises[parseInt(target)];
-        
+
         $("#name-edit").val(object['name']);
         $("#muscle-group-edit").val(object['muscle_group']);
         $("#exercise-id-edit").val(object['id']);
@@ -37,7 +43,7 @@ $(document).ready(function() {
 
         let target = $(this).attr('target');
         let object = aliments[parseInt(target)];
-        
+
         $("#name-edit").val(object['name']);
         $("#kcal-edit").val(object['kcal']);
         $("#prot-edit").val(object['protein']);
@@ -46,10 +52,10 @@ $(document).ready(function() {
         $("#aliment-id-edit").val(object['id']);
 
 
-        let modal_add_exercise = new bootstrap.Modal(document.getElementById('edit-aliment-modal'), {
+        let modal_add_aliment = new bootstrap.Modal(document.getElementById('edit-aliment-modal'), {
             keyboard: false
         })
-        modal_add_exercise.toggle();
+        modal_add_aliment.toggle();
     });
 
     $(".viewExercise").on("click", function() {
@@ -66,6 +72,30 @@ $(document).ready(function() {
         modal_add_exercise.toggle();
     });
 
+    $(".viewClient").on("click", function() {
+
+        let target = $(this).attr('target');
+        let object = clients[parseInt(target)];
+        console.log(object);
+        $("#name-view").html(object['name']);
+        $("#surname-view").html(object['surname'] == null ? "N/A" : object['surname']);
+        $("#tel-view").html(object['tf_number'] == null ? "N/A" : object['tf_number']);
+
+        $("#email-view").html(object['email']);
+        $("#weight-view").html(object['weight'] == null ? "N/A" : object['weight']);
+        $("#height-view").html(object['height'] == null ? "N/A" : object['height']);
+        $("#interests-view").html(object['my_interests'] == null ? "N/A" : object['my_interests']);
+        $("#about-view").html(object['about_me'] == null ? "N/A" : object['about_me']);
+        $("#state-view").html(object['disabled'] == 0 ? "Habilitado" : "Deshabilitado");
+
+
+        let modal_view_client = new bootstrap.Modal(document.getElementById('view-client-modal'), {
+            keyboard: false
+        })
+        modal_view_client.toggle();
+    });
+
+
     $(".viewAliment").on("click", function() {
 
         let target = $(this).attr('target');
@@ -76,10 +106,10 @@ $(document).ready(function() {
         $("#prot-view").html(object['protein']);
         $("#gluc-view").html(object['glucids']);
         $("#lip-view").html(object['lipids']);
-        let modal_add_exercise = new bootstrap.Modal(document.getElementById('view-aliment-modal'), {
+        let modal_add_aliment = new bootstrap.Modal(document.getElementById('view-aliment-modal'), {
             keyboard: false
         })
-        modal_add_exercise.toggle();
+        modal_add_aliment.toggle();
     });
 
 
@@ -95,10 +125,10 @@ $(document).ready(function() {
                     _token: _token
                 },
                 success: function(response) {
-                    if (response.error==false) {
+                    if (response.error == false) {
                         alert("Ejercicio eliminado correctamente.");
                         location.href = response.route;
-                    }else{
+                    } else {
                         alert(response.messages);
                     }
                 },
@@ -122,10 +152,10 @@ $(document).ready(function() {
                     _token: _token
                 },
                 success: function(response) {
-                    if (response.error==false) {
+                    if (response.error == false) {
                         alert("Alimento eliminado correctamente.");
                         location.href = response.route;
-                    }else{
+                    } else {
                         alert(response.messages);
                     }
                 },
@@ -136,7 +166,37 @@ $(document).ready(function() {
 
         }
     });
-    
+    $(".banUnbanClient").on("click", function() {
+        let client = parseInt($(this).attr('target'));
+        let clientArr = parseInt($(this).attr('arrTarget'));
+
+        if (confirm(clients[clientArr]['disabled'] == 0 ? '¿Está seguro de que desea deshabilitar a este cliente?' : '¿Está seguro de que desea habilitar a este cliente?')) {
+
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/ban-client",
+                type: "POST",
+                data: {
+                    client: client,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        alert(clients[clientArr]['disabled'] == 0 ? 'Cliente deshabilitado correctamente.' : 'Cliente habilitado correctamente.');
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+
+        }
+    });
+
+
     $(".add-exercise-button").on("click", function() {
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -148,12 +208,11 @@ $(document).ready(function() {
                 _token: _token
             },
             success: function(response) {
-                if (response.error==false) {
+                if (response.error == false) {
                     alert("Ejercicio creado correctamente.");
                     location.href = response.route;
-                }else{
-                    let check = `${Object.keys(response.messages)[0]}`;
-                    alert(response.messages[check]);
+                } else {
+                    alert(response.messages);
                 }
             },
             error: function(error) {
@@ -163,7 +222,7 @@ $(document).ready(function() {
     });
 
     $(".edit-exercise-button").on("click", function() {
-        
+
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: "/edit-exercise",
@@ -176,21 +235,11 @@ $(document).ready(function() {
             },
             success: function(response) {
                 console.log(response);
-                if (response.error==false) {
+                if (response.error == false) {
                     alert("Ejercicio modificado correctamente.");
                     location.href = response.route;
-                }else{
-                    let check = `${Object.keys(response.messages)[0]}`;
-                    
-                    switch (check) {
-                        case "name":
-                        case "muscleGroup":
-                            alert(response.messages[check]);
-                            break;
-                        default:
-                            alert(response.messages);
-                            break;
-                    }
+                } else {
+                    alert(response.messages);
                 }
             },
             error: function(error) {
@@ -198,7 +247,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $(".add-aliment-button").on("click", function() {
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
@@ -213,12 +262,12 @@ $(document).ready(function() {
                 _token: _token
             },
             success: function(response) {
-                if (response.error==false) {
+                if (response.error == false) {
                     alert("Alimento creado correctamente.");
                     location.href = response.route;
-                }else{
-                    let check = `${Object.keys(response.messages)[0]}`;
-                    alert(response.messages[check]);
+                } else {
+                    console.log(response);
+                    alert(response.messages);
 
                 }
             },
@@ -228,8 +277,40 @@ $(document).ready(function() {
         });
     });
 
+    $(".add-client-button").on("click", function() {
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/add-client",
+            type: "POST",
+            data: {
+                name: $("#name-add").val(),
+                surname: $("#surname-add").val(),
+                tel: $("#tel-add").val(),
+                email: $("#email-add").val(),
+                weight: $("#weight-add").val(),
+                height: $("#height-add").val(),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Cliente dado de alta correctamente. Se ha enviado un mail al cliente con las credenciales.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+
+                }
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+
+
+
     $(".edit-aliment-button").on("click", function() {
-        
+
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: "/edit-aliment",
@@ -244,24 +325,11 @@ $(document).ready(function() {
                 _token: _token
             },
             success: function(response) {
-                if (response.error==false) {
+                if (response.error == false) {
                     alert("Alimento modificado correctamente.");
                     location.href = response.route;
-                }else{
-                    let check = `${Object.keys(response.messages)[0]}`;
-                    
-                     switch (check) {
-                        case "name":
-                        case "kcalories":
-                        case "protein":
-                        case "glucids":
-                        case "lipids":
-                            alert(response.messages[check]);
-                            break;
-                        default:
-                            alert(response.messages);
-                            break;
-                    } 
+                } else {
+                    alert(response.messages);
                 }
             },
             error: function(error) {
@@ -274,10 +342,10 @@ $(document).ready(function() {
     $(".searchTerm").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $(".dataToSearch tr").not(':first').filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-      });
-    
+    });
+
 
     $("#login-link, #login-link-body").on("click", function() {
         let modal_login = new bootstrap.Modal(document.getElementById('login-modal'), {
@@ -304,7 +372,7 @@ $(document).ready(function() {
         $("#loading-login-hidden").removeClass("loading-login-hidden");
         //$("#login-modal").addClass("disabled");
 
-        
+
         $.ajax({
             url: "/login",
             type: "POST",
@@ -319,17 +387,7 @@ $(document).ready(function() {
                 if (response.logged == true) {
                     location.href = "/home";
                 } else {
-                    let check = `${Object.keys(response.messages)[0]}`;
-                    
-                    switch (check) {
-                        case "email":
-                        case "password":
-                            alert(response.messages[check]);
-                            break;
-                        default:
-                            alert(response.messages);
-                            break;
-                    }
+                    alert(response.messages);
                 }
                 _token = response.token;
                 $('meta[name="csrf-token"]').attr('content', response.token);

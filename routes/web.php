@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
+
 
 Route::get('/', function () {
     return view('includes.body');
@@ -36,3 +38,8 @@ Route::get('aliments', [App\Http\Controllers\TrainerController::class, 'aliments
 Route::post('remove-aliment', [App\Http\Controllers\TrainerController::class, 'remove_aliment'])->name('remove_aliment');
 Route::post('add-aliment', [App\Http\Controllers\TrainerController::class, 'add_aliment'])->name('add_aliment');
 Route::post('edit-aliment', [App\Http\Controllers\TrainerController::class, 'edit_aliment'])->name('edit_aliment');
+
+Route::get('clients', [App\Http\Controllers\TrainerController::class, 'clients_index'])->name('clients');
+Route::post('add-client', [App\Http\Controllers\TrainerController::class, 'add_client'])->name('add_client');
+Route::post('ban-client', [App\Http\Controllers\TrainerController::class, 'ban_client'])->name('ban_client');
+

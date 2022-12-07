@@ -32,7 +32,7 @@
     </div>
     <div class="row-custom pb-5">
         <div class="column-center-img-1 ">
-            <div class="button-img-home-img-3 centered-middle">
+            <div class="button-img-home-img-3 centered-middle" onclick="location.href='{{ route('clients') }}'">
                 <h1 class="title-home-white">
                     Clientes
                  </h1>

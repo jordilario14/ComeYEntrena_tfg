@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('trainer.home');
     }
+
+    public function profile_index(Request $request)
+    {
+        dd($request);
+    }
 }

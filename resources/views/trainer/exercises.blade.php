@@ -20,7 +20,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col" class="hide-on-small-md-table">Grupo muscular</th>
-                <th scope="col" class="text-right">  
+                <th scope="col" class="text-right">
                     <div class="button-table">
                         <img class="icon-button-table addExercise" src="{{ asset('img/icons/add.png') }}" alt="">
                     </div>
@@ -50,7 +50,7 @@
 
           <div class="button-table" onclick="location.href='{{ route('home') }}'">
             <img class="icon-button-table viewExercise" src="{{ asset('img/icons/back.png') }}" alt="">
-            <span class="text-cye-default">
+            <span class="text-cye-default link-return">
                 Atrás
             </span>
         </div>
@@ -64,15 +64,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-add" class="input-label">Nombre</label>
                     <input type="text" name="name-add" id="name-add" class="input">
-    
+
                     <label for="muscle-group-add" class="input-label">Grupo muscular</label>
                     <input type="text" name="muscle-group-add" id="muscle-group-add" class="input margin-0-impt">
                     <br>
                 </div>
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-accept add-exercise-button" id="add-exercise-button">Guardar</button>
@@ -80,8 +80,8 @@
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>
@@ -94,17 +94,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-edit" class="input-label">Nombre</label>
                     <input type="text" name="name-edit" id="name-edit" class="input">
-    
+
                     <label for="muscle-group-edit" class="input-label">Grupo muscular</label>
                     <input type="text" name="muscle-group-edit" id="muscle-group-edit" class="input margin-0-impt">
                     <br>
                 </div>
 
                 <input type="hidden" name="exercise-id-edit" id="exercise-id-edit" class="exercise-id-edit">
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-accept edit-exercise-button" id="edit-exercise-button">Guardar</button>
@@ -112,8 +112,8 @@
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>
@@ -126,23 +126,23 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-view" class="input-label">Nombre: </label>
                     <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
-    
+
                     <label for="muscle-group-view" class="input-label">Grupo muscular: </label>
                     <span class="muscle-group-view text-cye-default wrap-text" id="muscle-group-view" name="muscle-group-view">
                     </span>
 
                 </div>
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>

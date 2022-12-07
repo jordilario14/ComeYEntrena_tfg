@@ -42,7 +42,7 @@
         @auth
             <ul class="navbar-nav  mb-2 mb-lg-0 login-ul">
                 <li class="nav-item pr2">
-                    <a class="logIn text-cye-default wrap-text" href={{ route('home') }}>
+                    <a class="logIn text-cye-default wrap-text" href={{ route('profile') }}>
                         {{ Auth::user()->name." ".Auth::user()->surname }}
                     </a>
                 </li>
@@ -66,7 +66,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-     
+
                 <label for="email" class="input-label">E-mail</label>
                 <input type="text" name="email" id="email" class="input">
 
@@ -91,7 +91,7 @@
             <div class="centered-middle loading-login-hidden" id="loading-login-hidden">
                 <div class="loader-line"></div>
             </div>
-            
+
         </div>
     </div>
 </div>

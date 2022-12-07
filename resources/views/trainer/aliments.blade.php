@@ -19,7 +19,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col" class="text-right">  
+                <th scope="col" class="text-right">
                     <div class="button-table">
                         <img class="icon-button-table addAliment" src="{{ asset('img/icons/add.png') }}" alt="">
                     </div>
@@ -48,7 +48,7 @@
 
           <div class="button-table" onclick="location.href='{{ route('home') }}'">
             <img class="icon-button-table viewAliment"  src="{{ asset('img/icons/back.png') }}" alt="">
-            <span class="text-cye-default">
+            <span class="text-cye-default link-return">
                 Atrás
             </span>
         </div>
@@ -62,13 +62,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-add" class="input-label">Nombre</label>
                     <input type="text" name="name-add" id="name-add" class="input">
-    
+
                     <label for="kcal-add" class="input-label">Kcal.</label>
                     <input type="number" name="kcal-add" id="kcal-add" class="input">
-                    
+
                     <label for="prot-add" class="input-label">Proteínas (g.)</label>
                     <input type="number" name="prot-add" id="prot-add" class="input ">
 
@@ -78,7 +78,7 @@
                     <label for="gluc-add" class="input-label">Glúcidos (g.)</label>
                     <input type="number" name="gluc-add" id="gluc-add" class="input margin-0-impt">
                 </div>
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-accept add-aliment-button" id="add-aliment-button">Guardar</button>
@@ -86,8 +86,8 @@
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>
@@ -100,13 +100,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-edit" class="input-label">Nombre</label>
                     <input type="text" name="name-edit" id="name-edit" class="input">
-    
+
                     <label for="kcal-edit" class="input-label">Kcal.</label>
                     <input type="number" name="kcal-edit" id="kcal-edit" class="input">
-                    
+
                     <label for="prot-edit" class="input-label">Proteínas (g.)</label>
                     <input type="number" name="prot-edit" id="prot-edit" class="input ">
 
@@ -118,7 +118,7 @@
                 </div>
 
                 <input type="hidden" name="aliment-id-edit" id="aliment-id-edit" class="aliment-id-edit">
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-accept edit-aliment-button" id="edit-aliment-button">Guardar</button>
@@ -126,8 +126,8 @@
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>
@@ -140,11 +140,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-         
+
                     <label for="name-view" class="input-label">Nombre: </label>
                     <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
-    
+
                     <label for="kcal-view" class="input-label">KCal.: </label>
                     <span class="kcal-view text-cye-default wrap-text" id="kcal-view" name="kcal-view">
                     </span>
@@ -163,13 +163,13 @@
 
 
                 </div>
-    
+
                 <div class="modal-footer">
                     <div class="w-100 flex-centered">
                         <button type="button" class="button-modal-cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
-    
-                </div>               
+
+                </div>
             </div>
         </div>
     </div>
