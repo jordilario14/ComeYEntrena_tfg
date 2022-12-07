@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+    $(".link-profile").on("click", function() {
+        let target = $(this).attr("target");
+
+        $("#aboutMe").addClass('link-profile-hidden');
+        $("#security").addClass('link-profile-hidden');
+        $("#myData").addClass('link-profile-hidden');
+
+        $(target).removeClass('link-profile-hidden');
+
+        $('.link-profile').removeClass('current');
+        $(this).addClass('current');
+    });
+
     $(".addExercise").on("click", function() {
         let modal_add_exercise = new bootstrap.Modal(document.getElementById('add-exercise-modal'), {
             keyboard: false

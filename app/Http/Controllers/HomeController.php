@@ -28,6 +28,6 @@ class HomeController extends Controller
 
     public function profile_index(Request $request)
     {
-        dd($request);
+        return view('auth.profile');
     }
 }

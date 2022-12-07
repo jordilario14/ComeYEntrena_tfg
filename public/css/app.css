@@ -3,75 +3,136 @@
     font-family: "Inter";
 }
 
-.width-100{
+.card-profile {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem;
+    border-radius: 50px;
+}
+
+.margin-top-2-rem {
+    margin-top: 2rem;
+}
+
+.input-ta {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #214371;
+    color: #214371;
+    width: 230px;
+    height: 200px;
+    padding-left: 10px;
+    margin-bottom: 4%;
+}
+
+.input-ta:focus {
+    outline: none;
+    border: 1px solid #3e7dd4;
+    color: #214371;
+}
+
+.link-profile-hidden {
+    display: none !important;
+}
+
+.link-profile:hover {
+    cursor: pointer;
+    color: #356ab4;
+}
+
+.mgl-1 {
+    margin-left: 1rem;
+}
+
+.mgr-1 {
+    margin-right: 1rem;
+}
+
+.current {
+    text-decoration: underline;
+}
+
+.dflex {
+    display: flex;
+}
+
+.trainer-img-profile {
+    max-height: 250px;
+    border-radius: 50px 15px;
+    border: 5px solid #214371;
+}
+
+.card-header-profile {
+    background-image: url('/img/gimnasio.jpg');
+    background-size: cover;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.width-100 {
     width: 100%;
 }
 
-.wrap-text{
+.wrap-text {
     word-wrap: break-word;
     word-break: break-all;
 }
 
-.link-return{
+.link-return {
     cursor: pointer;
-    color: #0f233f;
+    color: #214371;
 }
 
-.loading-login-hidden{
+.loading-login-hidden {
     display: none !important;
 }
 
-.text-right{
+.text-right {
     text-align: end;
 }
 
-.padded-1-rem{
+.padded-1-rem {
     padding: 1rem;
 }
 
-.table-design{
+.table-design {
     padding: 2rem;
 }
 
-.icon-button-table{
+.icon-button-table {
     width: 30px;
     height: 30px;
 }
 
-.icon-button-table{
+.icon-button-table {
     cursor: pointer;
 }
 
-.button-table{
-
+.button-table {
     background-color: #fff;
 }
 
-
-.class-table-div{
+.class-table-div {
     padding: 1rem 5% 0 5%;
-    margin-right: auto; 
+    margin-right: auto;
     margin-left: auto;
 }
 
 .table-design thead {
     font-weight: bold !important;
-    color: #0f233f !important;
-    border-bottom: 3px solid #0f233f !important; 
+    color: #214371 !important;
+    border-bottom: 3px solid #214371 !important;
 }
 
-.table-design thead tr{
+.table-design thead tr {
     padding: 5px;
 }
 
-
-
 .disabled {
     pointer-events: none;
-  }
+}
 
 .loader-line {
-
     width: 200px;
     height: 4px;
     position: relative;
@@ -89,7 +150,7 @@
     left: -50%;
     height: 3px;
     width: 40%;
-    background-color: #0f233f;
+    background-color: #214371;
     -webkit-animation: lineAnim 1s linear infinite;
     -moz-animation: lineAnim 1s linear infinite;
     animation: lineAnim 1s linear infinite;
@@ -256,6 +317,13 @@ footer {
     margin-bottom: 2rem;
 }
 
+.title-cye-secondary {
+    color: #214371;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 2rem;
+}
+
 .title-cye-1st {
     color: #214371;
     font-weight: bolder;
@@ -281,7 +349,7 @@ footer {
     color: #214371;
 }
 
-.align-i-center{
+.align-i-center {
     display: flex;
     align-items: center;
 }
@@ -308,7 +376,7 @@ footer {
 }
 
 .button-home:active {
-    background-color: #0f233f;
+    background-color: #214371;
 }
 
 .vl {
@@ -392,6 +460,16 @@ footer {
 /* Extra small devices (phones, 600px and down) */
 
 @media only screen and (max-width: 600px) {
+    .padded-3-rem {
+        justify-content: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .padded-3-rem-et {
+        justify-content: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
     .hide-on-small-md {
         display: none
     }
@@ -418,7 +496,6 @@ footer {
         display: flex;
         flex-direction: column;
     }
-
     .Buscador {
         background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png) no-repeat 0px 5px;
         background-size: 24px;
@@ -427,13 +504,19 @@ footer {
         border-bottom: solid 1px #ccc;
         padding: 10px 10px 10px 30px;
         outline: none;
-      }
+    }
 }
 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {
+    .padded-3-rem {
+        padding: 3rem 0rem 3rem 0rem;
+    }
+    .padded-3-rem-et {
+        padding: 3rem;
+    }
     .Buscador {
         background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png) no-repeat 0px 5px;
         background-size: 24px;
@@ -442,7 +525,7 @@ footer {
         border-bottom: solid 1px #ccc;
         padding: 10px 10px 10px 30px;
         outline: none;
-      }
+    }
     .button-img-home-img-1 {
         box-shadow: inset 0 0 15px 10px black;
         max-width: 250px;
@@ -647,7 +730,6 @@ footer {
     .hide-on-small-md {
         display: block
     }
-
     .hide-on-small-md-table {
         display: table-cell
     }
