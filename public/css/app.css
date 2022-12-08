@@ -110,6 +110,13 @@
 
 .button-table {
     background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+.button-table span{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
 }
 
 .class-table-div {
@@ -460,6 +467,9 @@ footer {
 /* Extra small devices (phones, 600px and down) */
 
 @media only screen and (max-width: 600px) {
+    .text-align-center-no-flex{
+        text-align: center;
+    }
     .padded-3-rem {
         justify-content: center;
         padding-top: 1rem;

@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
 
+Route::get('/forgot-password-index', function () {
+    return view('auth.forgot_password');
+})->name('forgot-password')->middleware('checkGuest');
 
 Route::get('/', function () {
     return view('includes.body');
@@ -42,4 +45,6 @@ Route::post('edit-aliment', [App\Http\Controllers\TrainerController::class, 'edi
 Route::get('clients', [App\Http\Controllers\TrainerController::class, 'clients_index'])->name('clients');
 Route::post('add-client', [App\Http\Controllers\TrainerController::class, 'add_client'])->name('add_client');
 Route::post('ban-client', [App\Http\Controllers\TrainerController::class, 'ban_client'])->name('ban_client');
+
+
 

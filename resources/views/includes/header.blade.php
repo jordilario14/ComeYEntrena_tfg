@@ -70,13 +70,11 @@
                 <label for="email" class="input-label">E-mail</label>
                 <input type="text" name="email" id="email" class="input">
 
-
                 <label for="password" class="input-label">Contraseña</label>
                 <input type="password" name="password" id="password" class="input margin-0-impt">
 
-
                 <br>
-                <small class="small-password">
+                <small class="small-password" onclick="location.href='{{ route('forgot-password') }}'">
                     ¿Has olvidado tu contraseña?
                 </small>
 
