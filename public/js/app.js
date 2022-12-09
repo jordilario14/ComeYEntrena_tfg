@@ -1,5 +1,64 @@
 $(document).ready(function() {
 
+    
+
+    $(".change-password").on("click", function() {
+        let email_rec_pw = $('#email_rec_pw').val();
+        let new_password = $('#new_password').val();
+        let new_password_confirmation = $('#new_password_confirmation').val();
+        let hash_pw = $("#hash_pw").val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/change-password",
+            type: "POST",
+            data: {
+                email: email_rec_pw,
+                new_password: new_password,
+                new_password_confirmation: new_password_confirmation,
+                hash: hash_pw,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Listo! Tu contraseña se ha cambiado correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+    $(".send-forgot-password").on("click", function() {
+        let email_fg_pw = $('#email_fg_pw').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/forgot-password-send",
+            type: "POST",
+            data: {
+                email: email_fg_pw,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Listo! Revisa tu correo electrónico, has recibido un mail con las instrucciones para recuperar tu contraseña.");
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
     $(".link-profile").on("click", function() {
         let target = $(this).attr("target");
 

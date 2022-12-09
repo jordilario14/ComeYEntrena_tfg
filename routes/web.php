@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
 
+
+
 Route::get('/forgot-password-index', function () {
     return view('auth.forgot_password');
 })->name('forgot-password')->middleware('checkGuest');
@@ -30,6 +32,12 @@ Route::get('/', function () {
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login_action'])->name('auth.login');//checked
 Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout_action'])->name('auth.logout');
+Route::post('forgot-password-send', [App\Http\Controllers\AuthController::class, 'fg_password'])->name('auth.forgot-password-send');//checked
+Route::get('forgot-password-send/{hash}', [App\Http\Controllers\AuthController::class, 'fg_password_hash'])->name('auth.new-password-hashed');//checked
+Route::post('change-password', [App\Http\Controllers\AuthController::class, 'change_password'])->name('auth.change-password');//checked
+
+
+
 
 
 Route::get('exercises', [App\Http\Controllers\TrainerController::class, 'exercises_index'])->name('exercises');
