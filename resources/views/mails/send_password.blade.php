@@ -151,20 +151,17 @@
     <div class="flex-center w-100">
         <div class="card-email">
             <h3>
-                Hola!
+                Hola {{ $user->name." ".$user->surname}}!
             </h3>
-            <p class="w-90 wrap-text">Has solicitado una nueva contraseña. Para recuperarla, accede al siguiente sitio web y
-                pon tu
-                nueva contraseña:</p>
+            <p class="w-90 wrap-text">Has sido dado de alta en nuestro sistema. Tu contraseña es la siguiente: {{ $password }}</p>
     
             <div class="w-100 align-centered-phone mtb-1rem">
-                <a href='{{ $url }}' type="button" class="button-home" id="login-link-body">Recuperar
-                    contraseña</a>
+                <a href='{{ route('index') }}' type="button" class="button-home" id="login-link-body">Ir al sitio web</a>
             </div>
     
             <small class="w-90 wrap-text">Si no funciona ese botón en tu navegador, puedes acceder copiando el siguiente
                 enlace: <br>
-                {{ $url }}</small>
+                {{ route('index') }}</small>
         </div>
     
     </div>

@@ -162,8 +162,8 @@
 
 .button-table {
     background-color: #fff;
-    display: flex;
-    align-items: center;
+/*     display: flex;
+    align-items: center; */
 }
 .button-table span{
     padding-left: 0.5rem;

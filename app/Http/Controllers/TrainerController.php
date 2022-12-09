@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Illuminate\Support\Str;
+use App\Mail\SendPassword;
+use Mail;
 
 class TrainerController extends Controller
 {
@@ -361,6 +363,8 @@ class TrainerController extends Controller
         $client->remember_token=null;
         $client->password=Hash::make($password);;
         $client->save();
+
+        Mail::to($client->email)->send(new SendPassword($password, $client));
 
         return response()->json([
             'error' => false,

@@ -1,6 +1,65 @@
 $(document).ready(function() {
 
-    
+    $(".about-me-btn").on("click", function() {
+        let about_me = $('#about-me-ta').val();
+        let my_interests = $('#my-interests-ta').val();
+
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/change-about-me",
+            type: "POST",
+            data: {
+                about_me: about_me,
+                my_interests: my_interests,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Listo! Los datos han sido modificados correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+    $(".my-data-btn").on("click", function() {
+        let tel = $('#tel').val();
+        let weight = $('#weight').val();
+        let height = $('#height').val();
+
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/change-my-data",
+            type: "POST",
+            data: {
+                tel: tel,
+                weight: weight,
+                height: height,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Listo! Los datos han sido modificados correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
 
     $(".change-password").on("click", function() {
         let email_rec_pw = $('#email_rec_pw').val();

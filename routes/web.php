@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
+Route::post('/change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
+Route::post('/change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
+
 
 
 

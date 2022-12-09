@@ -43,7 +43,7 @@
                             Inicio
                         </span>
                     </div>
-                    <div class="button-table" >
+                    <div class="button-table about-me-btn" >
                         <span class="text-cye-default link-return save-about-me">
                             Guardar
                         </span>
@@ -117,7 +117,7 @@
                             Inicio
                         </span>
                     </div>
-                    <div class="button-table" >
+                    <div class="button-table my-data-btn" >
                         <span class="text-cye-default link-return save-my-data">
                             Guardar
                         </span>
