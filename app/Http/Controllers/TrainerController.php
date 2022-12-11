@@ -310,8 +310,8 @@ class TrainerController extends Controller
             'surname' => 'nullable|max:255',
             'tel' => 'nullable|integer|max_digits:9',
             'email' => 'required|email|unique:users',
-            'weight' => 'nullable|numeric|max_digits:10',
-            'height' => 'nullable|integer|max_digits:10',
+            'weight' => 'nullable|numeric|max:999',
+            'height' => 'nullable|integer|max:999',
         ];
 
 
@@ -324,9 +324,9 @@ class TrainerController extends Controller
             'email.required' => "El email debe de tener cómo máximo 255 caracteres.",
             'email.email' => "El email no tiene un formato correcto.",
             'email.unique' => "Este email ya ha sido registrado.",
-            'weight.max_digits' => "El peso debe tener como máximo 10 dígitos.",
+            'weight.max_digits' => "El peso debe ser inferior a 999.",
             'weight.numeric' => "El peso debe ser un número (Kilogramos).",
-            'height.max_digits' => "La altura debe tener como máximo 10 dígitos.",
+            'height.max_digits' => "La altura debe ser inferior a 999.",
             'height.integer' => "La altura deve ser un número entero (Centímetros).",
         ]);
 

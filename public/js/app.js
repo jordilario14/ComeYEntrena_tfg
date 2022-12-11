@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    
     $(".about-me-btn").on("click", function() {
         let about_me = $('#about-me-ta').val();
         let my_interests = $('#my-interests-ta').val();

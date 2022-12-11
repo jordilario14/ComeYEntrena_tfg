@@ -22,9 +22,6 @@ Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_ind
 Route::post('/change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
 Route::post('/change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
 
-
-
-
 Route::get('/forgot-password-index', function () {
     return view('auth.forgot_password');
 })->name('forgot-password')->middleware('checkGuest');
@@ -38,10 +35,6 @@ Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout_action
 Route::post('forgot-password-send', [App\Http\Controllers\AuthController::class, 'fg_password'])->name('auth.forgot-password-send');//checked
 Route::get('forgot-password-send/{hash}', [App\Http\Controllers\AuthController::class, 'fg_password_hash'])->name('auth.new-password-hashed');//checked
 Route::post('change-password', [App\Http\Controllers\AuthController::class, 'change_password'])->name('auth.change-password');//checked
-
-
-
-
 
 Route::get('exercises', [App\Http\Controllers\TrainerController::class, 'exercises_index'])->name('exercises');
 Route::post('remove-exercise', [App\Http\Controllers\TrainerController::class, 'remove_exercise'])->name('remove_exercise');
@@ -57,5 +50,5 @@ Route::get('clients', [App\Http\Controllers\TrainerController::class, 'clients_i
 Route::post('add-client', [App\Http\Controllers\TrainerController::class, 'add_client'])->name('add_client');
 Route::post('ban-client', [App\Http\Controllers\TrainerController::class, 'ban_client'])->name('ban_client');
 
-
-
+Route::post('change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
+Route::post('change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
