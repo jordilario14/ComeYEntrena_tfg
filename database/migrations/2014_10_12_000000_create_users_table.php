@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('nutritional_plan_id')->nullable();
+            $table->unsignedBigInteger('training_plan_id')->nullable();
             $table->longText('my_interests')->nullable();
             $table->longText('about_me')->nullable();
             $table->string('email')->unique();
@@ -31,12 +33,14 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('training_plan_id')->references('id')->on('training_plans');
+
         });
 
-    /*     Schema::table('cart_items', function(Blueprint $table)
+        Schema::table('nutritional_plans', function(Blueprint $table)
         {
-            $table->foreign('role_id')->references('id')->on('roles');
-        }); */
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**

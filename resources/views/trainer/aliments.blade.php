@@ -66,16 +66,16 @@
                     <label for="name-add" class="input-label">Nombre</label>
                     <input type="text" name="name-add" id="name-add" class="input">
 
-                    <label for="kcal-add" class="input-label">Kcal.</label>
+                    <label for="kcal-add" class="input-label">Kcal. (Por 100 gramos)</label>
                     <input type="number" name="kcal-add" id="kcal-add" class="input">
 
-                    <label for="prot-add" class="input-label">Proteínas (g.)</label>
+                    <label for="prot-add" class="input-label">Proteínas (Por 100 gramos)</label>
                     <input type="number" name="prot-add" id="prot-add" class="input ">
 
-                    <label for="lip-add" class="input-label">Lípidos (g.)</label>
+                    <label for="lip-add" class="input-label">Lípidos (Por 100 gramos)</label>
                     <input type="number" name="lip-add" id="lip-add" class="input ">
 
-                    <label for="gluc-add" class="input-label">Glúcidos (g.)</label>
+                    <label for="gluc-add" class="input-label">Glúcidos (Por 100 gramos)</label>
                     <input type="number" name="gluc-add" id="gluc-add" class="input margin-0-impt">
                 </div>
 
@@ -104,16 +104,16 @@
                     <label for="name-edit" class="input-label">Nombre</label>
                     <input type="text" name="name-edit" id="name-edit" class="input">
 
-                    <label for="kcal-edit" class="input-label">Kcal.</label>
+                    <label for="kcal-edit" class="input-label">Kcal. (Por 100 gramos)</label>
                     <input type="number" name="kcal-edit" id="kcal-edit" class="input">
 
-                    <label for="prot-edit" class="input-label">Proteínas (g.)</label>
+                    <label for="prot-edit" class="input-label">Proteínas (Por 100 gramos)</label>
                     <input type="number" name="prot-edit" id="prot-edit" class="input ">
 
-                    <label for="lip-edit" class="input-label">Lípidos (g.)</label>
+                    <label for="lip-edit" class="input-label">Lípidos (Por 100 gramos)</label>
                     <input type="number" name="lip-edit" id="lip-edit" class="input ">
 
-                    <label for="gluc-edit" class="input-label">Glúcidos (g.)</label>
+                    <label for="gluc-edit" class="input-label">Glúcidos (Por 100 gramos)</label>
                     <input type="number" name="gluc-edit" id="gluc-edit" class="input margin-0-impt">
                 </div>
 
@@ -145,19 +145,19 @@
                     <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
 
-                    <label for="kcal-view" class="input-label">KCal.: </label>
+                    <label for="kcal-view" class="input-label">KCal. (Por 100 gramos): </label>
                     <span class="kcal-view text-cye-default wrap-text" id="kcal-view" name="kcal-view">
                     </span>
 
-                    <label for="prot-view" class="input-label">Proteinas (g.): </label>
+                    <label for="prot-view" class="input-label">Proteinas (Por 100 gramos): </label>
                     <span class="prot-view text-cye-default wrap-text" id="prot-view" name="prot-view">
                     </span>
 
-                    <label for="lip-view" class="input-label">Lípidos (g.): </label>
+                    <label for="lip-view" class="input-label">Lípidos (Por 100 gramos): </label>
                     <span class="lip-view text-cye-default wrap-text" id="lip-view" name="lip-view">
                     </span>
 
-                    <label for="gluc-view" class="input-label">Glúcidos (g.): </label>
+                    <label for="gluc-view" class="input-label">Glúcidos (Por 100 gramos): </label>
                     <span class="gluc-view text-cye-default wrap-text" id="gluc-view" name="gluc-view">
                     </span>
 

@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
-Route::post('/change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
-Route::post('/change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
+Route::post('change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
+Route::post('change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
 Route::post('/change-security', [App\Http\Controllers\HomeController::class, 'change_security'])->name('change-security');
 
 Route::get('/forgot-password-index', function () {
@@ -51,5 +51,8 @@ Route::get('clients', [App\Http\Controllers\TrainerController::class, 'clients_i
 Route::post('add-client', [App\Http\Controllers\TrainerController::class, 'add_client'])->name('add_client');
 Route::post('ban-client', [App\Http\Controllers\TrainerController::class, 'ban_client'])->name('ban_client');
 
-Route::post('change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
-Route::post('change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
+Route::get('nutritional-plan/{client}', [App\Http\Controllers\TrainerController::class, 'nutritional_plan_index'])->name('nutritional-plan');
+Route::post('add-meal', [App\Http\Controllers\TrainerController::class, 'add_meal'])->name('add-meal');
+Route::post('edit-meal', [App\Http\Controllers\TrainerController::class, 'edit_meal'])->name('edit-meal');
+Route::post('add-aliment-pn', [App\Http\Controllers\TrainerController::class, 'add_aliment_pn'])->name('add-aliment-pn');
+

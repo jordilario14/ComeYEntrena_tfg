@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Exercise;
 use App\Models\Aliment;
+use App\Models\Meal;
+
 use App\Models\User;
+use App\Models\Nutritional_plan;
+
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Illuminate\Support\Str;
@@ -24,6 +28,102 @@ class TrainerController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function add_aliment_pn(Request $request)
+    {
+        dd($request);
+    }
+
+    public function nutritional_plan_index(Request $request)
+    {
+        $client = User::where('id', $request->client)->first();
+        $aliments = Aliment::get();
+        return view('trainer.nutri_plan')->with([
+            'user' => $client,
+            'aliments' => $aliments
+        ]);
+    }
+
+    public function add_meal(Request $request)
+    {
+        $rules = [
+            'meal_note' => 'max:255|required',
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
+            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+        ]);
+
+        if(!$v->passes()){
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route"=>null
+            ], 200);
+        }
+
+        $nutritional_plan = Nutritional_plan::where('id', $request->nutri_plan)->first();
+        if($nutritional_plan == null){
+            return response()->json([
+                'error' => true,
+                'messages' => "El cliente no tiene creado un plan nutricional.",
+                "route"=>null
+            ], 200);
+        }
+
+        $meal = new Meal;
+        $meal->meal_note = $request->meal_note;
+        $meal->nutritional_plan_id = $nutritional_plan->id;
+        $meal->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route"=>route('nutritional-plan', $meal->nutritional_plan->user->id)
+        ], 200);
+    }
+
+    public function edit_meal(Request $request)
+    {
+        $rules = [
+            'meal_note' => 'max:255|required',
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
+            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+        ]);
+
+        if(!$v->passes()){
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route"=>null
+            ], 200);
+        }
+
+        $meal = Meal::where('id', $request->meal_id)->first();
+
+        if($meal == null){
+            return response()->json([
+                'error' => true,
+                'messages' => "Esa comida no se ha encontrado en la base de datos.",
+                "route"=>null
+            ], 200);
+        }
+
+        $meal->meal_note = $request->meal_note;
+        $meal->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route"=>route('nutritional-plan', $meal->nutritional_plan->user->id)
+        ], 200);
+    }
+
+
 
     /**
      * Show the application dashboard.
@@ -339,7 +439,9 @@ class TrainerController extends Controller
             ], 200);
         }
 
+        $nutritional_plan = new Nutritional_plan;
 
+        $nutritional_plan->save();
 
         $name = $request->name;
         $surname = $request->surname;
@@ -362,8 +464,12 @@ class TrainerController extends Controller
         $client->my_interests = null;
         $client->about_me = null;
         $client->remember_token=null;
+        $client->nutritional_plan_id = $nutritional_plan->id;
         $client->password=Hash::make($password);
         $client->save();
+
+        $nutritional_plan->user_id = $client->id;
+        $nutritional_plan->save();
 
         Mail::to($client->email)->send(new SendPassword($password, $client));
 

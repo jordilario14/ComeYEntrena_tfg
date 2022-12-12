@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("nutritional_plan_id");
-            $table->integer("meal_number");
+            $table->string("meal_note");
             $table->timestamps();
 
             $table->foreign('nutritional_plan_id')->references('id')->on('nutritional_plans');

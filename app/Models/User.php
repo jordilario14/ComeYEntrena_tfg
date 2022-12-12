@@ -52,4 +52,9 @@ class User extends Authenticatable
         return $clients;
     }
 
+    public function nutritional_plan()
+    {
+        return $this->belongsTo(Nutritional_plan::class);
+    }
+
 }

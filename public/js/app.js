@@ -1,30 +1,23 @@
 $(document).ready(function() {
 
-    $(".security-btn").on("click", function() {
-        if (confirm("¿Está seguro de que desea realizar estos cambios en su perfil? En caso de que cambie el correo electrónico, asegúrese de que está bien escrito, ya que es la via de recuperación de contraseña de la que dispone.")) {
 
-        }
-        let email = $('#new-email').val();
-        let email_confirmation = $('#new-email_confirmation').val();
-
-        let password = $('#new-password').val();
-        let password_confirmation = $('#new-password_confirmation').val();
-
+    $(".add-aliment-pn-button").on("click", function() {
+        let aliment = $('#name-add-aliment').val();
+        let quantity = parseFloat($('#cuant_add_aliment').val());
+        let meal = $('#id_meal').val();
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
-            url: "/change-security",
+            url: "/add-aliment-pn",
             type: "POST",
             data: {
-                email: email,
-                email_confirmation: email_confirmation,
-                password: password,
-                password_confirmation: password_confirmation,
+                aliment: aliment,
+                quantity: quantity,
+                meal: meal,
                 _token: _token
             },
             success: function(response) {
                 if (response.error == false) {
-                    console.log(response);
-                    alert(response.messages);
+                    alert("Se ha modificado la nota de la comida correctamente.");
                     location.href = response.route;
                 } else {
                     alert(response.messages);
@@ -36,6 +29,133 @@ $(document).ready(function() {
                 alert("Ha habido un error durante la comunicación con el servidor.");
             }
         });
+    });
+
+    $(".edit-meal-button").on("click", function() {
+        let meal_note = $('#note-edit-meal').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/edit-meal",
+            type: "POST",
+            data: {
+                meal_note: meal_note,
+                meal_id: $("#id_meal").val(),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Se ha modificado la nota de la comida correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+    $(".add-meal-button").on("click", function() {
+        let meal_note = $('#note-add-meal').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/add-meal",
+            type: "POST",
+            data: {
+                meal_note: meal_note,
+                nutri_plan: $("#nutri-plan-id").val(),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Se ha añadido la comida correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+    $(".addAlimentPn").on("click", function() {
+
+        let key = $(this).attr("target");
+
+        $('#id_meal').val(user.nutritional_plan.meals[key]['id']);
+
+        let modal_add_aliment_pn = new bootstrap.Modal(document.getElementById('add-aliment-pn-modal'), {
+            keyboard: false
+        })
+        modal_add_aliment_pn.toggle();
+    });
+
+    $(".addMeal").on("click", function() {
+        let modal_add_meal = new bootstrap.Modal(document.getElementById('add-meal-modal'), {
+            keyboard: false
+        })
+        modal_add_meal.toggle();
+    });
+
+    $(".editMeal").on("click", function() {
+
+        let key = $(this).attr("target");
+
+        $('#note-edit-meal').val(user.nutritional_plan.meals[key]['meal_note']);
+        $('#id_meal').val(user.nutritional_plan.meals[key]['id']);
+
+
+        let modal_edit_meal = new bootstrap.Modal(document.getElementById('edit-meal-modal'), {
+            keyboard: false
+        })
+        modal_edit_meal.toggle();
+    });
+
+
+
+    $(".security-btn").on("click", function() {
+        if (confirm("¿Está seguro de que desea realizar estos cambios en su perfil? En caso de que cambie el correo electrónico, asegúrese de que está bien escrito, ya que es la via de recuperación de contraseña de la que dispone.")) {
+            let email = $('#new-email').val();
+            let email_confirmation = $('#new-email_confirmation').val();
+
+            let password = $('#new-password').val();
+            let password_confirmation = $('#new-password_confirmation').val();
+
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/change-security",
+                type: "POST",
+                data: {
+                    email: email,
+                    email_confirmation: email_confirmation,
+                    password: password,
+                    password_confirmation: password_confirmation,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        console.log(response);
+                        alert(response.messages);
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                    _token = response.token;
+                    $('meta[name="csrf-token"]').attr('content', response.token);
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+        }
+
     });
 
     $(".about-me-btn").on("click", function() {
