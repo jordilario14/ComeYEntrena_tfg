@@ -33,7 +33,7 @@
                         <td class="text-cye-default wrap-text">{{$client->name." ".$client->surname}}</td>
                         <td class="text-right text-cye-default">
                             <div class="button-table">
-                                <img class="icon-button-table nutritionalViewClient" src="{{ asset('img/icons/nutritional.png') }}" alt="">
+                                <img class="icon-button-table nutritionalViewClient" onclick="location.href='{{ route('nutritional-plan', $client->id) }}'" src="{{ asset('img/icons/nutritional.png') }}" alt="">
                                 <img class="icon-button-table trainingViewClient" src="{{ asset('img/icons/training.png') }}" alt="">
                                 <img class="icon-button-table viewClient" target="{{$key}}" src="{{ asset('img/icons/view.png') }}" alt="">
                                 <img class="icon-button-table banUnbanClient" arrTarget="{{ $key }}" target="{{$client->id}}" src="

@@ -1,5 +1,43 @@
 $(document).ready(function() {
-    
+
+    $(".security-btn").on("click", function() {
+        if (confirm("¿Está seguro de que desea realizar estos cambios en su perfil? En caso de que cambie el correo electrónico, asegúrese de que está bien escrito, ya que es la via de recuperación de contraseña de la que dispone.")) {
+
+        }
+        let email = $('#new-email').val();
+        let email_confirmation = $('#new-email_confirmation').val();
+
+        let password = $('#new-password').val();
+        let password_confirmation = $('#new-password_confirmation').val();
+
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/change-security",
+            type: "POST",
+            data: {
+                email: email,
+                email_confirmation: email_confirmation,
+                password: password,
+                password_confirmation: password_confirmation,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    console.log(response);
+                    alert(response.messages);
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
     $(".about-me-btn").on("click", function() {
         let about_me = $('#about-me-ta').val();
         let my_interests = $('#my-interests-ta').val();

@@ -308,8 +308,8 @@ class TrainerController extends Controller
         $rules = [
             'name' => 'max:255|required',
             'surname' => 'nullable|max:255',
-            'tel' => 'nullable|integer|max_digits:9',
-            'email' => 'required|email|unique:users',
+            'tel' => 'nullable|integer|max:999999999',
+            'email' => 'required|email|unique:users|max:255',
             'weight' => 'nullable|numeric|max:999',
             'height' => 'nullable|integer|max:999',
         ];
@@ -319,11 +319,12 @@ class TrainerController extends Controller
             'name.max' => "El nombre debe tener como máximo 255 caracteres.",
             'name.required' => "El nombre del cliente es un campo requerido.",
             'surname.max' => "Los apellidos deben tener como máximo 255 caracteres.",
-            'tel.max_digits' => "El número de teléfono debe tener como máximo 9 dígitos.",
             'tel.integer' => "El número de teléfono debe ser un número entero (Sin espacios ni caractéres especiales).",
+            'weight.max' => "El teléfono debe ser inferior a 999999999.",
             'email.required' => "El email debe de tener cómo máximo 255 caracteres.",
             'email.email' => "El email no tiene un formato correcto.",
             'email.unique' => "Este email ya ha sido registrado.",
+            'email.max' => "El email debe tener como máximo 255 caracteres.",
             'weight.max_digits' => "El peso debe ser inferior a 999.",
             'weight.numeric' => "El peso debe ser un número (Kilogramos).",
             'height.max_digits' => "La altura debe ser inferior a 999.",
@@ -361,7 +362,7 @@ class TrainerController extends Controller
         $client->my_interests = null;
         $client->about_me = null;
         $client->remember_token=null;
-        $client->password=Hash::make($password);;
+        $client->password=Hash::make($password);
         $client->save();
 
         Mail::to($client->email)->send(new SendPassword($password, $client));

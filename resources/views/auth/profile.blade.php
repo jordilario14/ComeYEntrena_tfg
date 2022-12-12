@@ -51,7 +51,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="width-100 text-left padded-3-rem link-profile-hidden" id="security">
@@ -85,7 +84,7 @@
                             Inicio
                         </span>
                     </div>
-                    <div class="button-table" >
+                    <div class="button-table security-btn" >
                         <span class="text-cye-default link-return save-security">
                             Guardar
                         </span>

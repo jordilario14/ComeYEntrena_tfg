@@ -21,6 +21,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile_index'])->name('profile');
 Route::post('/change-about-me', [App\Http\Controllers\HomeController::class, 'change_about_me'])->name('change-about-me');
 Route::post('/change-my-data', [App\Http\Controllers\HomeController::class, 'change_my_data'])->name('change-my-data');
+Route::post('/change-security', [App\Http\Controllers\HomeController::class, 'change_security'])->name('change-security');
 
 Route::get('/forgot-password-index', function () {
     return view('auth.forgot_password');
