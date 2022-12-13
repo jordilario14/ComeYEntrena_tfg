@@ -32,6 +32,25 @@ class TrainerController extends Controller
     public function add_aliment_pn(Request $request)
     {
         dd($request);
+        $rules = [
+            'aliment' => 'max:10000|integer|required',
+            'quantity' => 'max:999|numeric|required',
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
+            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+        ]);
+
+        if(!$v->passes()){
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route"=>null
+            ], 200);
+        }
+
+
     }
 
     public function nutritional_plan_index(Request $request)

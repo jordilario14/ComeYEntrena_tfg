@@ -33,14 +33,53 @@
                     <img class="icon-button-table addAlimentPn" target="{{ $key }}" src="{{ asset('img/icons/add.png') }}" alt="">
                     <img class="icon-button-table removeMeal" src="{{ asset('img/icons/remove_line.png') }}" alt="">
                     <img class="icon-button-table editMeal" target="{{ $key }}" src="{{ asset('img/icons/note.png') }}" alt="">
-
                 </h1>
+
+                <div class="class-table-div text-left">
+
+                    <table class="table table-design dataToSearch">
+                        <thead>
+                          <tr>
+                            <th scope="col">Alimento</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col" class="text-right">
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($meal->meal_aliments as $key=>$meal_aliment)
+                                <tr>
+                                    <td class="text-cye-default" scope="row"> {{$meal_aliment->aliment->name}} </td>
+                                    <td class="text-cye-default wrap-text">{{intval($meal_aliment->cuantity)*100}} ml. / g.</td>
+                                    <td class="text-right text-cye-default">
+                                        <div class="button-table">
+                                            <img class="icon-button-table " src="{{ asset('img/icons/view.png') }}" alt="">
+                                            <img class="icon-button-table " src="{{ asset('img/icons/edit.png') }}" alt="">
+                                            <img class="icon-button-table " src="{{ asset('img/icons/remove.png') }}" alt="">
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <td colspan="3" class="text-center text-cye-default">No hay alimentos en esta comida.</td>
+                            @endforelse
+
+                        </tbody>
+                      </table>
+
+
+                </div>
+
             @empty
                 <h1 class="title-cye-secondary align-centered-phone margin-0-impt" >
                     No hay comidas en este plan nutricional.
                 </h1>
             @endforelse
-
+            <div class="button-table" onclick="location.href='{{ route('home') }}'">
+                <img class="icon-button-table"  src="{{ asset('img/icons/back.png') }}" alt="">
+                <span class="text-cye-default link-return">
+                    Atrás
+                </span>
+            </div>
             <hr class="hr-separador">
         </div>
     </div>

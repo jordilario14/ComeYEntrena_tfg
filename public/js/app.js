@@ -1,6 +1,12 @@
 $(document).ready(function() {
 
 
+    $(".removeMeal").on("click", function() {
+        if (confirm('¿Está seguro de que desea eliminar esta comida?')) {
+
+        }
+    });
+
     $(".add-aliment-pn-button").on("click", function() {
         let aliment = $('#name-add-aliment').val();
         let quantity = parseFloat($('#cuant_add_aliment').val());
