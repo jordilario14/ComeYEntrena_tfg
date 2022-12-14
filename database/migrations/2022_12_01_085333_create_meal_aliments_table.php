@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("meal_id");
             $table->unsignedBigInteger("aliment_id");
-            $table->integer("cuantity");
+            $table->float("cuantity");
             $table->timestamps();
 
             $table->foreign('meal_id')->references('id')->on('meals');

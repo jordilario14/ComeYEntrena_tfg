@@ -1,16 +1,144 @@
 $(document).ready(function() {
 
+    $(".edit_aliment_pn").on("click", function() {
+
+        let target = $(this).attr('target');
+        let targetma = $(this).attr('target');
+
+        let object = user.nutritional_plan.meals[target]['meal_aliments'][targetma];
+
+        $('#id_meal_edit').val(user.nutritional_plan.meals[target]['id']);
+        $('#id_meal_aliment_edit').val(object['id']);
+
+
+        $("#name-edit-aliment").val(object['aliment']['id']);
+        $("#cuant_edit_aliment").val(object['cuantity']);
+
+
+        let modal_edit_meal_aliment = new bootstrap.Modal(document.getElementById('edit-aliment-pn-modal'), {
+            keyboard: false
+        })
+        modal_edit_meal_aliment.toggle();
+    });
+
+    $(".view_aliment_pn").on("click", function() {
+
+        let target = $(this).attr('target');
+        let targetma = $(this).attr('target');
+
+        let object = user.nutritional_plan.meals[target]['meal_aliments'][targetma];
+        console.log(object);
+        $("#name-view-aliment-pn").html(object['aliment']['name']);
+        $("#measure-view-aliment-pn").html(object['aliment']['measure']);
+
+        $("#kcal-view-aliment-pn").html(object['aliment']['kcal']);
+        $("#protein-view-aliment-pn").html(object['aliment']['protein']);
+        $("#lipids-view-aliment-pn").html(object['aliment']['lipids']);
+        $("#glucids-view-aliment-pn").html(object['aliment']['glucids']);
+        $("#quantity-view-aliment-pn").html(object['cuantity']);
+
+
+        let modal_view_meal_aliment = new bootstrap.Modal(document.getElementById('view-meal-aliment-modal'), {
+            keyboard: false
+        })
+        modal_view_meal_aliment.toggle();
+    });
+
+    $(".remove_aliment_pn").on("click", function() {
+        if (confirm('¿Está seguro de que desea eliminar este alimento de la comida?')) {
+            let meal_aliment = $(this).attr('target');
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/remove-aliment-pn",
+                type: "POST",
+                data: {
+                    meal_aliment: meal_aliment,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        alert("Se ha eliminado el alimento de la comida correctamente correctamente.");
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                    _token = response.token;
+                    $('meta[name="csrf-token"]').attr('content', response.token);
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+        }
+    });
 
     $(".removeMeal").on("click", function() {
         if (confirm('¿Está seguro de que desea eliminar esta comida?')) {
-
+            let meal = $(this).attr('target');
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/remove-meal",
+                type: "POST",
+                data: {
+                    meal: meal,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        alert("Se ha eliminado la comida y los alimentos que contenía correctamente.");
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                    _token = response.token;
+                    $('meta[name="csrf-token"]').attr('content', response.token);
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
         }
+    });
+
+
+
+    $(".edit-aliment-pn-button").on("click", function() {
+        let aliment = $('#name-edit-aliment').val();
+        let quantity = parseFloat($('#cuant_edit_aliment').val());
+        let meal = $('#id_meal_edit').val();
+        let meal_aliment = $('#id_meal_aliment_edit').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/edit-aliment-pn",
+            type: "POST",
+            data: {
+                aliment: aliment,
+                quantity: quantity,
+                meal: meal,
+                meal_aliment: meal_aliment,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert(response.messages);
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
     });
 
     $(".add-aliment-pn-button").on("click", function() {
         let aliment = $('#name-add-aliment').val();
         let quantity = parseFloat($('#cuant_add_aliment').val());
         let meal = $('#id_meal').val();
+
         let _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: "/add-aliment-pn",
@@ -23,7 +151,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.error == false) {
-                    alert("Se ha modificado la nota de la comida correctamente.");
+                    alert(response.messages);
                     location.href = response.route;
                 } else {
                     alert(response.messages);
@@ -340,6 +468,7 @@ $(document).ready(function() {
         let object = aliments[parseInt(target)];
 
         $("#name-edit").val(object['name']);
+        $("#measure-edit").val(object['measure'] == "ml." ? "0" : "1");
         $("#kcal-edit").val(object['kcal']);
         $("#prot-edit").val(object['protein']);
         $("#lip-edit").val(object['lipids']);
@@ -397,6 +526,7 @@ $(document).ready(function() {
         let object = aliments[parseInt(target)];
         console.log(object);
         $("#name-view").html(object['name']);
+        $("#measure-view").html(object['measure']);
         $("#kcal-view").html(object['kcal']);
         $("#prot-view").html(object['protein']);
         $("#gluc-view").html(object['glucids']);
@@ -550,6 +680,7 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 name: $("#name-add").val(),
+                measure: $("#measure-add").val(),
                 kcalories: parseInt($("#kcal-add").val()),
                 protein: parseInt($("#prot-add").val()),
                 lipids: parseInt($("#lip-add").val()),
@@ -612,6 +743,7 @@ $(document).ready(function() {
             type: "POST",
             data: {
                 name: $("#name-edit").val(),
+                measure: $("#measure-edit").val(),
                 kcalories: parseInt($("#kcal-edit").val()),
                 protein: parseInt($("#prot-edit").val()),
                 lipids: parseInt($("#lip-edit").val()),

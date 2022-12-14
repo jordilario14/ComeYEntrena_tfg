@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\Exercise;
-use App\Models\Aliment;
-use App\Models\Meal;
-
-use App\Models\User;
-use App\Models\Nutritional_plan;
-
-use Illuminate\Support\Facades\Hash;
-use DB;
-use Illuminate\Support\Str;
 use App\Mail\SendPassword;
+use App\Models\Aliment;
+use App\Models\Exercise;
+use App\Models\Meal;
+use App\Models\Meal_aliment;
+use App\Models\Nutritional_plan;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Mail;
 
 class TrainerController extends Controller
@@ -29,27 +27,153 @@ class TrainerController extends Controller
         $this->middleware('auth');
     }
 
-    public function add_aliment_pn(Request $request)
+    public function remove_aliment_pn(Request $request)
     {
-        dd($request);
+        $meal_aliment = Meal_aliment::where('id', $request->meal_aliment)->first();
+
+        if ($meal_aliment == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se ha encontrado el alimento seleccionado.",
+                "route" => null,
+            ], 200);
+        }
+
+        $user = $meal_aliment->meal->nutritional_plan->user;
+
+        $meal_aliment->delete();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('nutritional-plan', $user->id),
+        ], 200);
+
+    }
+
+    public function remove_meal(Request $request)
+    {
+        $meal = Meal::where('id', $request->meal)->first();
+
+        if ($meal == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se ha encontrado la comida seleccionada",
+                "route" => null,
+            ], 200);
+        }
+
+        if ($meal->meal_aliments != null) {
+            foreach ($meal->meal_aliments as $meal_aliment) {
+                $meal_aliment->delete();
+            }
+        }
+
+        $user = $meal->nutritional_plan->user;
+
+        $meal->delete();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('nutritional-plan', $user->id),
+        ], 200);
+    }
+
+    public function edit_aliment_pn(Request $request)
+    {
         $rules = [
             'aliment' => 'max:10000|integer|required',
             'quantity' => 'max:999|numeric|required',
         ];
 
         $v = Validator::make($request->input(), $rules, $messages = [
-            'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
-            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+            'aliment.max' => "El alimento debe ser inferior a 10000.",
+            'aliment.required' => "El alimento no puede estar vacío.",
+            'aliment.integer' => "El alimento tiene un formato incorrecto.",
+            'quantity.max' => "La cantidad debe ser inferior a 999.",
+            'quantity.required' => "La cantidad no puede estar vacía.",
+            'quantity.numeric' => "La cantidad tiene un formato incorrecto. Debe de ser un valor numérico.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
+        $meal = Meal::where('id', $request->meal)->first();
+        $aliment = Aliment::where('id', $request->aliment)->first();
+
+        if ($meal == null || $aliment == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se han encontrado los datos para llevar a cabo su petición",
+                "route" => null,
+            ], 200);
+        }
+
+        $meal_aliment = Meal_aliment::where('id', $request->meal_aliment)->first();
+        $meal_aliment->aliment_id = $aliment->id;
+        $meal_aliment->cuantity = $request->quantity;
+        $meal_aliment->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => "Se ha modificado el alimento de la comida correctamente.",
+            "route" => route('nutritional-plan', $meal->nutritional_plan->user),
+        ], 200);
+
+    }
+
+    public function add_aliment_pn(Request $request)
+    {
+        $rules = [
+            'aliment' => 'max:10000|integer|required',
+            'quantity' => 'max:999|numeric|required',
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'aliment.max' => "El alimento debe ser inferior a 10000.",
+            'aliment.required' => "El alimento no puede estar vacío.",
+            'aliment.integer' => "El alimento tiene un formato incorrecto.",
+            'quantity.max' => "La cantidad debe ser inferior a 999.",
+            'quantity.required' => "La cantidad no puede estar vacía.",
+            'quantity.numeric' => "La cantidad tiene un formato incorrecto. Debe de ser un valor numérico.",
+        ]);
+
+        if (!$v->passes()) {
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route" => null,
+            ], 200);
+        }
+
+        $meal = Meal::where('id', $request->meal)->first();
+        $aliment = Aliment::where('id', $request->aliment)->first();
+
+        if ($meal == null || $aliment == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se han encontrado los datos para llevar a cabo su petición",
+                "route" => null,
+            ], 200);
+        }
+
+        $meal_aliment = new Meal_aliment;
+        $meal_aliment->meal_id = $meal->id;
+        $meal_aliment->aliment_id = $aliment->id;
+        $meal_aliment->cuantity = $request->quantity;
+        $meal_aliment->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => "Se ha añadido el alimento a la comida correctamente.",
+            "route" => route('nutritional-plan', $meal->nutritional_plan->user),
+        ], 200);
 
     }
 
@@ -57,9 +181,29 @@ class TrainerController extends Controller
     {
         $client = User::where('id', $request->client)->first();
         $aliments = Aliment::get();
+
+        $pn_macros = app();
+        $pn_macros = $pn_macros->make('stdClass');
+
+        $pn_macros->kcal = 0;
+        $pn_macros->protein =0;
+        $pn_macros->glucids =0;
+        $pn_macros->lipids =0;
+
+        foreach ($client->nutritional_plan->meals as $meal) {
+            foreach ($meal->meal_aliments as $meal_aliment) {
+                $pn_macros->kcal = $pn_macros->kcal + floatval($meal_aliment->cuantity) * intval($meal_aliment->aliment->kcal);
+                $pn_macros->protein =$pn_macros->protein + floatval($meal_aliment->cuantity) * intval($meal_aliment->aliment->protein);
+                $pn_macros->glucids =$pn_macros->glucids + floatval($meal_aliment->cuantity) * intval($meal_aliment->aliment->glucids);
+                $pn_macros->lipids =$pn_macros->lipids + floatval($meal_aliment->cuantity) * intval($meal_aliment->aliment->lipids);
+            }
+        }
+
+
         return view('trainer.nutri_plan')->with([
             'user' => $client,
-            'aliments' => $aliments
+            'aliments' => $aliments,
+            'macros' => $pn_macros
         ]);
     }
 
@@ -74,20 +218,20 @@ class TrainerController extends Controller
             'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
         $nutritional_plan = Nutritional_plan::where('id', $request->nutri_plan)->first();
-        if($nutritional_plan == null){
+        if ($nutritional_plan == null) {
             return response()->json([
                 'error' => true,
                 'messages' => "El cliente no tiene creado un plan nutricional.",
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
@@ -99,7 +243,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('nutritional-plan', $meal->nutritional_plan->user->id)
+            "route" => route('nutritional-plan', $meal->nutritional_plan->user->id),
         ], 200);
     }
 
@@ -114,21 +258,21 @@ class TrainerController extends Controller
             'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
         $meal = Meal::where('id', $request->meal_id)->first();
 
-        if($meal == null){
+        if ($meal == null) {
             return response()->json([
                 'error' => true,
                 'messages' => "Esa comida no se ha encontrado en la base de datos.",
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
@@ -138,11 +282,9 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('nutritional-plan', $meal->nutritional_plan->user->id)
+            "route" => route('nutritional-plan', $meal->nutritional_plan->user->id),
         ], 200);
     }
-
-
 
     /**
      * Show the application dashboard.
@@ -181,14 +323,14 @@ class TrainerController extends Controller
             return response()->json([
                 'error' => false,
                 'messages' => null,
-                "route"=>route('exercises')
+                "route" => route('exercises'),
             ], 200);
 
-        }else{
+        } else {
             return response()->json([
                 'error' => true,
                 'messages' => 'No hay un ejercicio con ese identificador.',
-                "route"=>route('exercises')
+                "route" => route('exercises'),
             ], 200);
         }
     }
@@ -203,14 +345,14 @@ class TrainerController extends Controller
             return response()->json([
                 'error' => false,
                 'messages' => null,
-                "route"=>route('aliments')
+                "route" => route('aliments'),
             ], 200);
 
-        }else{
+        } else {
             return response()->json([
                 'error' => true,
                 'messages' => 'No hay un alimento con ese identificador.',
-                "route"=>route('aliment')
+                "route" => route('aliment'),
             ], 200);
         }
     }
@@ -219,7 +361,7 @@ class TrainerController extends Controller
     {
         $rules = [
             'name' => 'max:255|required',
-            'muscleGroup' => 'max:255|required'
+            'muscleGroup' => 'max:255|required',
         ];
 
         $v = Validator::make($request->input(), $rules, $messages = [
@@ -229,11 +371,11 @@ class TrainerController extends Controller
             'muscleGroup.max' => "El grupo muscular debe tener como máximo 255 caracteres.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
@@ -248,7 +390,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('exercises')
+            "route" => route('exercises'),
         ], 200);
     }
 
@@ -256,15 +398,18 @@ class TrainerController extends Controller
     {
         $rules = [
             'name' => 'max:255|required',
+            'measure' => 'required|in:0,1',
             'kcalories' => 'integer|max_digits:10|required',
             'protein' => 'integer|max_digits:10|required',
             'glucids' => 'integer|max_digits:10|required',
-            'lipids' => 'integer|max_digits:10|required'
+            'lipids' => 'integer|max_digits:10|required',
         ];
 
         $v = Validator::make($request->input(), $rules, $messages = [
             'name.max' => "El nombre debe tener como máximo 255 caracteres.",
-            'name.required' => "El nombre del ejercicio es un campo requerido.",
+            'name.required' => "El nombre del alimento es un campo requerido.",
+            'measure.required' => "La medida del alimento es un campo requerido.",
+            'measure.in' => "La medida del alimento no tiene un valor válido.",
             'kcalories.required' => "Las calorias són un campo requerido.",
             'kcalories.max_digits' => "Las calorias deben tener como máximo 10 dígitos.",
             'kcalories.integer' => "Las calorias deben ser un número entero.",
@@ -279,17 +424,16 @@ class TrainerController extends Controller
             'lipids.integer' => "Los lípidos deben ser un número entero.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
-
-
         $name = $request->name;
+        $measure = $request->measure == '0' ? "ml." : "g.";
         $kcal = $request->kcalories;
         $protein = $request->protein;
         $glucids = $request->glucids;
@@ -297,6 +441,7 @@ class TrainerController extends Controller
 
         $alimento = new Aliment;
         $alimento->name = $name;
+        $alimento->measure = $measure;
         $alimento->kcal = $kcal;
         $alimento->protein = $protein;
         $alimento->glucids = $glucids;
@@ -306,7 +451,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('aliments')
+            "route" => route('aliments'),
         ], 200);
     }
 
@@ -314,15 +459,18 @@ class TrainerController extends Controller
     {
         $rules = [
             'name' => 'max:255|required',
+            'measure' => 'required|in:0,1',
             'kcalories' => 'integer|max_digits:10|required',
             'protein' => 'integer|max_digits:10|required',
             'glucids' => 'integer|max_digits:10|required',
-            'lipids' => 'integer|max_digits:10|required'
+            'lipids' => 'integer|max_digits:10|required',
         ];
 
         $v = Validator::make($request->input(), $rules, $messages = [
             'name.max' => "El nombre debe tener como máximo 255 caracteres.",
             'name.required' => "El nombre del ejercicio es un campo requerido.",
+            'measure.required' => "La medida del alimento es un campo requerido.",
+            'measure.in' => "La medida del alimento no tiene un valor válido.",
             'kcalories.required' => "Las calorias són un campo requerido.",
             'kcalories.max_digits' => "Las calorias deben tener como máximo 10 dígitos.",
             'kcalories.integer' => "Las calorias deben ser un número entero.",
@@ -337,15 +485,16 @@ class TrainerController extends Controller
             'lipids.integer' => "Los lípidos deben ser un número entero.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
         $name = $request->name;
+        $measure = $request->measure == '0' ? "ml." : "g.";
         $kcal = $request->kcalories;
         $protein = $request->protein;
         $glucids = $request->glucids;
@@ -357,11 +506,12 @@ class TrainerController extends Controller
             return response()->json([
                 'error' => true,
                 'messages' => "El alimento seleccionado no existe.",
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
         $alimento->name = $name;
+        $alimento->measure = $measure;
         $alimento->kcal = $kcal;
         $alimento->protein = $protein;
         $alimento->glucids = $glucids;
@@ -371,7 +521,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('aliments')
+            "route" => route('aliments'),
         ], 200);
     }
 
@@ -379,7 +529,7 @@ class TrainerController extends Controller
     {
         $rules = [
             'name' => 'max:255|required',
-            'muscleGroup' => 'max:255|required'
+            'muscleGroup' => 'max:255|required',
         ];
 
         $v = Validator::make($request->input(), $rules, $messages = [
@@ -389,11 +539,11 @@ class TrainerController extends Controller
             'muscleGroup.max' => "El grupo muscular debe tener como máximo 255 caracteres.",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
@@ -406,10 +556,9 @@ class TrainerController extends Controller
             return response()->json([
                 'error' => true,
                 'messages' => "El ejercicio seleccionado no existe.",
-                "route"=>null
+                "route" => null,
             ], 200);
         }
-
 
         $ejercicio->name = $name;
         $ejercicio->muscle_group = $muscleGroup;
@@ -418,7 +567,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => null,
-            "route"=>route('exercises')
+            "route" => route('exercises'),
         ], 200);
     }
 
@@ -432,7 +581,6 @@ class TrainerController extends Controller
             'weight' => 'nullable|numeric|max:999',
             'height' => 'nullable|integer|max:999',
         ];
-
 
         $v = Validator::make($request->input(), $rules, $messages = [
             'name.max' => "El nombre debe tener como máximo 255 caracteres.",
@@ -450,11 +598,11 @@ class TrainerController extends Controller
             'height.integer' => "La altura deve ser un número entero (Centímetros).",
         ]);
 
-        if(!$v->passes()){
+        if (!$v->passes()) {
             return response()->json([
                 'error' => true,
                 'messages' => $v->messages()->first(),
-                "route"=>null
+                "route" => null,
             ], 200);
         }
 
@@ -482,9 +630,9 @@ class TrainerController extends Controller
         $client->disabled = false;
         $client->my_interests = null;
         $client->about_me = null;
-        $client->remember_token=null;
+        $client->remember_token = null;
         $client->nutritional_plan_id = $nutritional_plan->id;
-        $client->password=Hash::make($password);
+        $client->password = Hash::make($password);
         $client->save();
 
         $nutritional_plan->user_id = $client->id;
@@ -495,7 +643,7 @@ class TrainerController extends Controller
         return response()->json([
             'error' => false,
             'messages' => $v->messages(),
-            "route"=>route('clients')
+            "route" => route('clients'),
         ], 200);
     }
 
@@ -507,18 +655,17 @@ class TrainerController extends Controller
             $client->disabled = !$client->disabled;
             $client->save();
 
-
             return response()->json([
                 'error' => false,
                 'messages' => null,
-                "route"=>route('clients')
+                "route" => route('clients'),
             ], 200);
 
-        }else{
+        } else {
             return response()->json([
                 'error' => true,
                 'messages' => 'No hay un cliente con ese identificador.',
-                "route"=>route('clients')
+                "route" => route('clients'),
             ], 200);
         }
     }

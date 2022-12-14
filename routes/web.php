@@ -55,4 +55,7 @@ Route::get('nutritional-plan/{client}', [App\Http\Controllers\TrainerController:
 Route::post('add-meal', [App\Http\Controllers\TrainerController::class, 'add_meal'])->name('add-meal');
 Route::post('edit-meal', [App\Http\Controllers\TrainerController::class, 'edit_meal'])->name('edit-meal');
 Route::post('add-aliment-pn', [App\Http\Controllers\TrainerController::class, 'add_aliment_pn'])->name('add-aliment-pn');
+Route::post('edit-aliment-pn', [App\Http\Controllers\TrainerController::class, 'edit_aliment_pn'])->name('edit-aliment-pn');
+Route::post('remove-meal', [App\Http\Controllers\TrainerController::class, 'remove_meal'])->name('remove-meal');
+Route::post('remove-aliment-pn', [App\Http\Controllers\TrainerController::class, 'remove_aliment_pn'])->name('remove-aliment-pn');
 

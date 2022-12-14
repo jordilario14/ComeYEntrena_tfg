@@ -66,6 +66,12 @@
                     <label for="name-add" class="input-label">Nombre</label>
                     <input type="text" name="name-add" id="name-add" class="input">
 
+                    <label for="measure-add" class="input-label">Medida</label>
+                    <select class="input" name="measure-add" id="measure-add" >
+                        <option value="0">ml.</option>
+                        <option value="1">g.</option>
+                    </select>
+
                     <label for="kcal-add" class="input-label">Kcal. (Por 100 gramos)</label>
                     <input type="number" name="kcal-add" id="kcal-add" class="input">
 
@@ -103,6 +109,12 @@
 
                     <label for="name-edit" class="input-label">Nombre</label>
                     <input type="text" name="name-edit" id="name-edit" class="input">
+
+                    <label for="measure-edit" class="input-label">Medida</label>
+                    <select class="input" name="measure-edit" id="measure-edit" >
+                        <option value="0">ml.</option>
+                        <option value="1">g.</option>
+                    </select>
 
                     <label for="kcal-edit" class="input-label">Kcal. (Por 100 gramos)</label>
                     <input type="number" name="kcal-edit" id="kcal-edit" class="input">
@@ -144,6 +156,11 @@
                     <label for="name-view" class="input-label">Nombre: </label>
                     <span class="name-view text-cye-default wrap-text" id="name-view" name="name-view">
                     </span>
+
+                    <label for="measure-view" class="input-label">Medida</label>
+                    <span class="name-view text-cye-default wrap-text" id="measure-view" name="measure-view">
+                    </span>
+
 
                     <label for="kcal-view" class="input-label">KCal. (Por 100 gramos): </label>
                     <span class="kcal-view text-cye-default wrap-text" id="kcal-view" name="kcal-view">
