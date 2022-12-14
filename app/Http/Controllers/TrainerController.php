@@ -6,8 +6,13 @@ use App\Mail\SendPassword;
 use App\Models\Aliment;
 use App\Models\Exercise;
 use App\Models\Meal;
+use App\Models\Day;
+
 use App\Models\Meal_aliment;
+use App\Models\Day_exercise;
+
 use App\Models\Nutritional_plan;
+use App\Models\Training_plan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -128,6 +133,65 @@ class TrainerController extends Controller
 
     }
 
+    public function add_exercise_pe(Request $request)
+    {
+        $rules = [
+            'exercise' => 'max:10000|integer|required',
+            'series' => 'max:6|integer|required',
+            'reps' => 'max:50|integer|required',
+            'rir' => 'max:10|string|required',
+
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'exercise.max' => "El ejercicio debe ser inferior a 10000.",
+            'exercise.required' => "El ejercicio no puede estar vacío.",
+            'exercise.integer' => "El ejercicio tiene un formato incorrecto.",
+            'series.max' => "Las series deben ser inferiores a 6.",
+            'series.required' => "Las series son un campo obligatorio.",
+            'series.numeric' => "Las series tienen un formato incorrecto. Deben de ser un valor numérico.",
+            'reps.max' => "Las repeticiones deben ser inferiores a 50.",
+            'reps.required' => "Las repeticiones son un campo obligatorio.",
+            'reps.numeric' => "Las repeticiones tienen un formato incorrecto. Deben de ser un valor numérico.",
+            'rir.max' => "El rir tiene un formato incorrecto",
+            'rir.required' => "El rir es un campo obligatorio.",
+            'rir.string' => "El rir tiene un formato incorrecto",
+        ]);
+
+        if (!$v->passes()) {
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route" => null,
+            ], 200);
+        }
+
+        $day = Day::where('id', $request->day)->first();
+        $exercise = Exercise::where('id', $request->exercise)->first();
+
+        if ($day == null || $exercise == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se han encontrado los datos para llevar a cabo su petición",
+                "route" => null,
+            ], 200);
+        }
+
+        $day_exercise = new Day_exercise;
+        $day_exercise->day_id = $day->id;
+        $day_exercise->exercise_id = $exercise->id;
+        $day_exercise->series = $request->series;
+        $day_exercise->repetitions = $request->reps;
+        $day_exercise->rir = $request->rir;
+        $day_exercise->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => "Se ha añadido el ejercicio al día correctamente.",
+            "route" => route('training-plan', $day->training_plan->user),
+        ], 200);
+
+    }
     public function add_aliment_pn(Request $request)
     {
         $rules = [
@@ -177,6 +241,18 @@ class TrainerController extends Controller
 
     }
 
+    public function training_plan_index(Request $request)
+    {
+        $client = User::where('id', $request->client)->first();
+        $exercises = Exercise::get();
+
+
+        return view('trainer.train_plan')->with([
+            'user' => $client,
+            'exercises' => $exercises
+        ]);
+    }
+
     public function nutritional_plan_index(Request $request)
     {
         $client = User::where('id', $request->client)->first();
@@ -207,6 +283,48 @@ class TrainerController extends Controller
         ]);
     }
 
+
+    public function add_day(Request $request)
+    {
+        $rules = [
+            'day_note' => 'max:255|required',
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'day_note.max' => "El nombre debe tener como máximo 255 caracteres.",
+            'day_note.required' => "El nombre del día es un campo requerido.",
+        ]);
+
+        if (!$v->passes()) {
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route" => null,
+            ], 200);
+        }
+
+        $training_plan = Training_plan::where('id', $request->train_plan)->first();
+
+        if ($training_plan == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "El cliente no tiene creado un plan de entrenamiento.",
+                "route" => null,
+            ], 200);
+        }
+
+        $day = new Day;
+        $day->day_note = $request->day_note;
+        $day->training_plan_id = $training_plan->id;
+        $day->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('training-plan', $day->training_plan->user->id),
+        ], 200);
+    }
+
     public function add_meal(Request $request)
     {
         $rules = [
@@ -215,7 +333,7 @@ class TrainerController extends Controller
 
         $v = Validator::make($request->input(), $rules, $messages = [
             'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
-            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+            'meal_note.required' => "El nombre de la comida es un campo requerido.",
         ]);
 
         if (!$v->passes()) {
@@ -607,8 +725,11 @@ class TrainerController extends Controller
         }
 
         $nutritional_plan = new Nutritional_plan;
-
         $nutritional_plan->save();
+
+        $training_plan = new Training_plan;
+        $training_plan->save();
+
 
         $name = $request->name;
         $surname = $request->surname;
@@ -632,11 +753,15 @@ class TrainerController extends Controller
         $client->about_me = null;
         $client->remember_token = null;
         $client->nutritional_plan_id = $nutritional_plan->id;
+        $client->training_plan_id = $training_plan->id;
         $client->password = Hash::make($password);
         $client->save();
 
         $nutritional_plan->user_id = $client->id;
         $nutritional_plan->save();
+
+        $training_plan->user_id = $client->id;
+        $training_plan->save();
 
         Mail::to($client->email)->send(new SendPassword($password, $client));
 

@@ -86,12 +86,7 @@
                         No hay comidas en este plan nutricional.
                     </h1>
                 @endforelse
-                <div class="button-table" onclick="location.href='{{ route('home') }}'">
-                    <img class="icon-button-table" src="{{ asset('img/icons/back.png') }}" alt="">
-                    <span class="text-cye-default link-return">
-                        Atrás
-                    </span>
-                </div>
+
                 <hr class="hr-separador">
 
                 <h1 class="title-cye-secondary align-centered-phone margin-0-impt">
@@ -117,6 +112,13 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="button-table" onclick="location.href='{{ route('clients') }}'">
+                    <img class="icon-button-table" src="{{ asset('img/icons/back.png') }}" alt="">
+                    <span class="text-cye-default link-return">
+                        Atrás
+                    </span>
                 </div>
             </div>
         </div>

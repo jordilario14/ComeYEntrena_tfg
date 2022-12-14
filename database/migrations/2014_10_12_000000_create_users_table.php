@@ -41,6 +41,11 @@ return new class extends Migration
         {
             $table->foreign('user_id')->references('id')->on('users');
         });
+
+        Schema::table('training_plans', function(Blueprint $table)
+        {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**

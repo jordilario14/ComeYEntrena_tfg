@@ -52,10 +52,16 @@ Route::post('add-client', [App\Http\Controllers\TrainerController::class, 'add_c
 Route::post('ban-client', [App\Http\Controllers\TrainerController::class, 'ban_client'])->name('ban_client');
 
 Route::get('nutritional-plan/{client}', [App\Http\Controllers\TrainerController::class, 'nutritional_plan_index'])->name('nutritional-plan');
+Route::get('training-plan/{client}', [App\Http\Controllers\TrainerController::class, 'training_plan_index'])->name('training-plan');
+
 Route::post('add-meal', [App\Http\Controllers\TrainerController::class, 'add_meal'])->name('add-meal');
 Route::post('edit-meal', [App\Http\Controllers\TrainerController::class, 'edit_meal'])->name('edit-meal');
 Route::post('add-aliment-pn', [App\Http\Controllers\TrainerController::class, 'add_aliment_pn'])->name('add-aliment-pn');
 Route::post('edit-aliment-pn', [App\Http\Controllers\TrainerController::class, 'edit_aliment_pn'])->name('edit-aliment-pn');
 Route::post('remove-meal', [App\Http\Controllers\TrainerController::class, 'remove_meal'])->name('remove-meal');
 Route::post('remove-aliment-pn', [App\Http\Controllers\TrainerController::class, 'remove_aliment_pn'])->name('remove-aliment-pn');
+
+Route::post('add-day', [App\Http\Controllers\TrainerController::class, 'add_day'])->name('add-day');
+Route::post('add-exercise-pe', [App\Http\Controllers\TrainerController::class, 'add_exercise_pe'])->name('add-exercise-pe');
+
 

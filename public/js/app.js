@@ -133,7 +133,41 @@ $(document).ready(function() {
             }
         });
     });
+    $(".add-exercise-pe-button").on("click", function() {
+        let exercise = $('#name-add-exercise').val();
+        let series = parseInt($('#series-add-exercise').val());
+        let reps = parseInt($('#reps-add-exercise').val());
+        let rir = $('#rir-add-exercise').val();
+        let day = $('#id_day').val();
 
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: "/add-exercise-pe",
+            type: "POST",
+            data: {
+                exercise: exercise,
+                series: series,
+                reps: reps,
+                rir: rir,
+                day: day,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert(response.messages);
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
     $(".add-aliment-pn-button").on("click", function() {
         let aliment = $('#name-add-aliment').val();
         let quantity = parseFloat($('#cuant_add_aliment').val());
@@ -192,6 +226,34 @@ $(document).ready(function() {
         });
     });
 
+    $(".add-day-button").on("click", function() {
+        let day_note = $('#note-add-day').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/add-day",
+            type: "POST",
+            data: {
+                day_note: day_note,
+                train_plan: $("#train-plan-id").val(),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Se ha añadido el día correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
+
     $(".add-meal-button").on("click", function() {
         let meal_note = $('#note-add-meal').val();
         let _token = $('meta[name="csrf-token"]').attr('content');
@@ -219,6 +281,20 @@ $(document).ready(function() {
         });
     });
 
+
+
+    $(".addExercisePe").on("click", function() {
+
+        let key = $(this).attr("target");
+
+        $('#id_day').val(user.training_plan.days[key]['id']);
+
+        let modal_add_exercise_pe = new bootstrap.Modal(document.getElementById('add-exercise-pe-modal'), {
+            keyboard: false
+        })
+        modal_add_exercise_pe.toggle();
+    });
+
     $(".addAlimentPn").on("click", function() {
 
         let key = $(this).attr("target");
@@ -237,6 +313,14 @@ $(document).ready(function() {
         })
         modal_add_meal.toggle();
     });
+    $(".addDay").on("click", function() {
+        let modal_add_day = new bootstrap.Modal(document.getElementById('add-day-modal'), {
+            keyboard: false
+        })
+        modal_add_day.toggle();
+    });
+
+
 
     $(".editMeal").on("click", function() {
 
