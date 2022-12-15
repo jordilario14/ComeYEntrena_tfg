@@ -47,6 +47,38 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function authorizeRoles($roles)
+    {
+      if ($this->hasAnyRole($roles)) {
+        return true;
+      }
+      abort(401, 'This action is unauthorized.');
+    }
+
+    public function hasAnyRole($roles)
+    {
+      if (is_array($roles)) {
+        foreach ($roles as $role) {
+          if ($this->hasRole($role)) {
+            return true;
+          }
+        }
+      } else {
+        if ($this->hasRole($roles)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public function hasRole($role)
+    {
+      if ($this->role()->where('role', $role)->first()) {
+        return true;
+      }
+      return false;
+    }
+
     public static function clients(){
         $clients = DB::table('users')->where('role_id','<>', '1')->get();
         return $clients;

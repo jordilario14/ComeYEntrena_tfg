@@ -30,6 +30,32 @@ class TrainerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:ROLE_TRAINER');
+
+    }
+
+    public function remove_exercise_pe(Request $request)
+    {
+        $day_exercise = Day_exercise::where('id', $request->day_exercise)->first();
+
+        if ($day_exercise == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se ha encontrado el ejercicio seleccionado.",
+                "route" => null,
+            ], 200);
+        }
+
+        $user = $day_exercise->day->training_plan->user;
+
+        $day_exercise->delete();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('training-plan', $user->id),
+        ], 200);
+
     }
 
     public function remove_aliment_pn(Request $request)
@@ -54,6 +80,35 @@ class TrainerController extends Controller
             "route" => route('nutritional-plan', $user->id),
         ], 200);
 
+    }
+
+    public function remove_day(Request $request)
+    {
+        $day = Day::where('id', $request->day)->first();
+
+        if ($day == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se ha encontrado el día seleccionado",
+                "route" => null,
+            ], 200);
+        }
+
+        if ($day->day_exercises != null) {
+            foreach ($day->day_exercises as $day_exercise) {
+                $day_exercise->delete();
+            }
+        }
+
+        $user = $day->training_plan->user;
+
+        $day->delete();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('training-plan', $user->id),
+        ], 200);
     }
 
     public function remove_meal(Request $request)
@@ -83,6 +138,65 @@ class TrainerController extends Controller
             'messages' => null,
             "route" => route('nutritional-plan', $user->id),
         ], 200);
+    }
+
+    public function edit_exercise_pe(Request $request)
+    {
+        $rules = [
+            'exercise' => 'max:10000|integer|required',
+            'series' => 'max:6|integer|required',
+            'reps' => 'max:50|integer|required',
+            'rir' => 'max:10|string|required',
+
+        ];
+
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'exercise.max' => "El ejercicio debe ser inferior a 10000.",
+            'exercise.required' => "El ejercicio no puede estar vacío.",
+            'exercise.integer' => "El ejercicio tiene un formato incorrecto.",
+            'series.max' => "Las series deben ser inferiores a 6.",
+            'series.required' => "Las series son un campo obligatorio.",
+            'series.integer' => "Las series tienen un formato incorrecto. Deben de ser un valor entero.",
+            'reps.max' => "Las repeticiones deben ser inferiores a 50.",
+            'reps.required' => "Las repeticiones son un campo obligatorio.",
+            'reps.integer' => "Las repeticiones tienen un formato incorrecto. Deben de ser un valor entero.",
+            'rir.max' => "El rir tiene un formato incorrecto",
+            'rir.required' => "El rir es un campo obligatorio.",
+            'rir.string' => "El rir tiene un formato incorrecto",
+        ]);
+
+        if (!$v->passes()) {
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route" => null,
+            ], 200);
+        }
+
+        $day = Day::where('id', $request->day)->first();
+        $exercise = Exercise::where('id', $request->exercise)->first();
+
+        if ($day == null || $exercise == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "No se han encontrado los datos para llevar a cabo su petición",
+                "route" => null,
+            ], 200);
+        }
+
+        $day_exercise = Day_exercise::where('id', $request->day_exercise)->first();
+        $day_exercise->exercise_id = $exercise->id;
+        $day_exercise->series = $request->series;
+        $day_exercise->repetitions = $request->reps;
+        $day_exercise->rir = $request->rir;
+        $day_exercise->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => "Se ha modificado el ejercicio del día correctamente.",
+            "route" => route('training-plan', $day->training_plan->user),
+        ], 200);
+
     }
 
     public function edit_aliment_pn(Request $request)
@@ -149,10 +263,10 @@ class TrainerController extends Controller
             'exercise.integer' => "El ejercicio tiene un formato incorrecto.",
             'series.max' => "Las series deben ser inferiores a 6.",
             'series.required' => "Las series son un campo obligatorio.",
-            'series.numeric' => "Las series tienen un formato incorrecto. Deben de ser un valor numérico.",
+            'series.integer' => "Las series tienen un formato incorrecto. Deben de ser un valor entero.",
             'reps.max' => "Las repeticiones deben ser inferiores a 50.",
             'reps.required' => "Las repeticiones son un campo obligatorio.",
-            'reps.numeric' => "Las repeticiones tienen un formato incorrecto. Deben de ser un valor numérico.",
+            'reps.integer' => "Las repeticiones tienen un formato incorrecto. Deben de ser un valor entero.",
             'rir.max' => "El rir tiene un formato incorrecto",
             'rir.required' => "El rir es un campo obligatorio.",
             'rir.string' => "El rir tiene un formato incorrecto",
@@ -364,7 +478,44 @@ class TrainerController extends Controller
             "route" => route('nutritional-plan', $meal->nutritional_plan->user->id),
         ], 200);
     }
+    public function edit_day(Request $request)
+    {
+        $rules = [
+            'day_note' => 'max:255|required',
+        ];
 
+        $v = Validator::make($request->input(), $rules, $messages = [
+            'day_note.max' => "El nombre debe tener como máximo 255 caracteres.",
+            'day_note.required' => "El nombre del día es un campo requerido.",
+        ]);
+
+        if (!$v->passes()) {
+            return response()->json([
+                'error' => true,
+                'messages' => $v->messages()->first(),
+                "route" => null,
+            ], 200);
+        }
+
+        $day = Day::where('id', $request->day_id)->first();
+
+        if ($day == null) {
+            return response()->json([
+                'error' => true,
+                'messages' => "Ese día no se ha encontrado en la base de datos.",
+                "route" => null,
+            ], 200);
+        }
+
+        $day->day_note = $request->day_note;
+        $day->save();
+
+        return response()->json([
+            'error' => false,
+            'messages' => null,
+            "route" => route('training-plan', $day->training_plan->user->id),
+        ], 200);
+    }
     public function edit_meal(Request $request)
     {
         $rules = [
@@ -373,7 +524,7 @@ class TrainerController extends Controller
 
         $v = Validator::make($request->input(), $rules, $messages = [
             'meal_note.max' => "El nombre debe tener como máximo 255 caracteres.",
-            'meal_note.required' => "El nombre del ejercicio es un campo requerido.",
+            'meal_note.required' => "El nombre de la comida es un campo requerido.",
         ]);
 
         if (!$v->passes()) {

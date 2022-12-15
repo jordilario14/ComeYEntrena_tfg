@@ -63,5 +63,13 @@ Route::post('remove-aliment-pn', [App\Http\Controllers\TrainerController::class,
 
 Route::post('add-day', [App\Http\Controllers\TrainerController::class, 'add_day'])->name('add-day');
 Route::post('add-exercise-pe', [App\Http\Controllers\TrainerController::class, 'add_exercise_pe'])->name('add-exercise-pe');
+Route::post('remove-day', [App\Http\Controllers\TrainerController::class, 'remove_day'])->name('remove-day');
+Route::post('edit-day', [App\Http\Controllers\TrainerController::class, 'edit_day'])->name('edit-day');
+Route::post('remove-exercise-pe', [App\Http\Controllers\TrainerController::class, 'remove_exercise_pe'])->name('remove-exercise-pe');
+Route::post('edit-exercise-pe', [App\Http\Controllers\TrainerController::class, 'edit_exercise_pe'])->name('edit-exercise-pe');
+
+Route::get('pn-client', [App\Http\Controllers\ClientController::class, 'pn_client'])->name('pn-client');
+Route::get('pe-client', [App\Http\Controllers\ClientController::class, 'pe_client'])->name('pe-client');
+
 
 

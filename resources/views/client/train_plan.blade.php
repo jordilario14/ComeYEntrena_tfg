@@ -86,7 +86,7 @@
                     </h1>
                 @endforelse
 
-                <div class="button-table" onclick="location.href='{{ route('clients') }}'">
+                <div class="button-table" onclick="location.href='{{ route('index') }}'">
                     <img class="icon-button-table" src="{{ asset('img/icons/back.png') }}" alt="">
                     <span class="text-cye-default link-return">
                         Atrás

@@ -4,7 +4,13 @@
 <div class="part-1-body flex-centered">
     <div class="card-profile width-100">
         <div class="card-header-profile width-100 text-left dflex padded-3-rem-et">
-            <img class="trainer-img-profile" src="{{ asset('img/trainer.png') }}" alt="">
+            @if (Auth::user()->role_id == 1)
+                <img class="trainer-img-profile" src="{{ asset('img/trainer.png') }}" alt="">
+            @else
+                <div class="card-header-profile width-100 text-left dflex padded-3-rem-et">
+                    <img class="client-img-profile" src="{{ asset('img/client.png') }}" alt="">
+                </div>
+            @endif
         </div>
 
         <div class="width-100 text-left dflex padded-3-rem">

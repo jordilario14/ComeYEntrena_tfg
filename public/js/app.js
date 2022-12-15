@@ -1,9 +1,34 @@
 $(document).ready(function() {
 
+
+    $(".edit_exercise_pe").on("click", function() {
+
+        let target = $(this).attr('target');
+        let targetma = $(this).attr('targetma');
+
+        let object = user.training_plan.days[target]['day_exercises'][targetma];
+
+        console.log(user.training_plan.days);
+
+        $('#id_day_edit').val(user.training_plan.days[target]['id']);
+        $('#id_day_exercise_edit').val(object['id']);
+        console.log(object);
+        $('#name-edit-exercise').val(object['exercise']['id']);
+        $("#series-edit-exercise").val(object['series']);
+        $("#reps-edit-exercise").val(object['repetitions']);
+        $("#rir-edit-exercise").val(object['rir']);
+
+
+        let modal_edit_exercise_aliment = new bootstrap.Modal(document.getElementById('edit-exercise-pe-modal'), {
+            keyboard: false
+        })
+        modal_edit_exercise_aliment.toggle();
+    });
+
     $(".edit_aliment_pn").on("click", function() {
 
         let target = $(this).attr('target');
-        let targetma = $(this).attr('target');
+        let targetma = $(this).attr('targetma');
 
         let object = user.nutritional_plan.meals[target]['meal_aliments'][targetma];
 
@@ -21,10 +46,31 @@ $(document).ready(function() {
         modal_edit_meal_aliment.toggle();
     });
 
+    $(".view_exercise_pe").on("click", function() {
+
+        let target = $(this).attr('target');
+        let targetma = $(this).attr('targetma');
+
+        let object = user.training_plan.days[target]['day_exercises'][targetma];
+
+        $("#name-view-exercise-pe").html(object['exercise']['name']);
+        $("#series-view-exercise-pe").html(object['series']);
+        $('#mc-group-view-exercise-pe').html(object['exercise']['muscle_group']);
+        $("#reps-view-exercise-pe").html(object['repetitions']);
+        $("#muscl-view-exercise-pe").html(object['exercise']['muscle_group']);
+        $("#rir-view-exercise-pe").html(object['rir']);
+
+
+        let modal_view_day_exercise = new bootstrap.Modal(document.getElementById('view-day-exercise-modal'), {
+            keyboard: false
+        })
+        modal_view_day_exercise.toggle();
+    });
+
     $(".view_aliment_pn").on("click", function() {
 
         let target = $(this).attr('target');
-        let targetma = $(this).attr('target');
+        let targetma = $(this).attr('targetma');
 
         let object = user.nutritional_plan.meals[target]['meal_aliments'][targetma];
         console.log(object);
@@ -44,6 +90,34 @@ $(document).ready(function() {
         modal_view_meal_aliment.toggle();
     });
 
+    $(".remove_exercise_pe").on("click", function() {
+        if (confirm('¿Está seguro de que desea eliminar este ejercicio del día?')) {
+            let day_exercise = $(this).attr('target');
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/remove-exercise-pe",
+                type: "POST",
+                data: {
+                    day_exercise: day_exercise,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        alert("Se ha eliminado el ejercicio del día correctamente correctamente.");
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                    _token = response.token;
+                    $('meta[name="csrf-token"]').attr('content', response.token);
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+        }
+    });
+
     $(".remove_aliment_pn").on("click", function() {
         if (confirm('¿Está seguro de que desea eliminar este alimento de la comida?')) {
             let meal_aliment = $(this).attr('target');
@@ -58,6 +132,34 @@ $(document).ready(function() {
                 success: function(response) {
                     if (response.error == false) {
                         alert("Se ha eliminado el alimento de la comida correctamente correctamente.");
+                        location.href = response.route;
+                    } else {
+                        alert(response.messages);
+                    }
+                    _token = response.token;
+                    $('meta[name="csrf-token"]').attr('content', response.token);
+                },
+                error: function(error) {
+                    alert("Ha habido un error durante la comunicación con el servidor.");
+                }
+            });
+        }
+    });
+
+    $(".removeDay").on("click", function() {
+        if (confirm('¿Está seguro de que desea eliminar este dia?')) {
+            let day = $(this).attr('target');
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/remove-day",
+                type: "POST",
+                data: {
+                    day: day,
+                    _token: _token
+                },
+                success: function(response) {
+                    if (response.error == false) {
+                        alert("Se ha eliminado el día y los ejercicios que contenía correctamente.");
                         location.href = response.route;
                     } else {
                         alert(response.messages);
@@ -100,7 +202,42 @@ $(document).ready(function() {
         }
     });
 
+    $(".edit-exercise-pe-button").on("click", function() {
+        let exercise = $('#name-edit-exercise').val();
+        let series = $('#series-edit-exercise').val();
+        let reps = $('#reps-edit-exercise').val();
+        let rir = $('#rir-edit-exercise').val();
 
+        let day = $('#id_day_edit').val();
+        let day_exercise = $('#id_day_exercise_edit').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/edit-exercise-pe",
+            type: "POST",
+            data: {
+                exercise: exercise,
+                series: series,
+                reps: reps,
+                rir: rir,
+                day: day,
+                day_exercise: day_exercise,
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert(response.messages);
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
 
     $(".edit-aliment-pn-button").on("click", function() {
         let aliment = $('#name-edit-aliment').val();
@@ -198,6 +335,34 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(".edit-day-button").on("click", function() {
+        let day_note = $('#note-edit-day').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url: "/edit-day",
+            type: "POST",
+            data: {
+                day_note: day_note,
+                day_id: $("#id_day").val(),
+                _token: _token
+            },
+            success: function(response) {
+                if (response.error == false) {
+                    alert("Se ha modificado la nota del día correctamente.");
+                    location.href = response.route;
+                } else {
+                    alert(response.messages);
+                }
+                _token = response.token;
+                $('meta[name="csrf-token"]').attr('content', response.token);
+            },
+            error: function(error) {
+                alert("Ha habido un error durante la comunicación con el servidor.");
+            }
+        });
+    });
+
 
     $(".edit-meal-button").on("click", function() {
         let meal_note = $('#note-edit-meal').val();
@@ -320,6 +485,19 @@ $(document).ready(function() {
         modal_add_day.toggle();
     });
 
+
+    $(".editDay").on("click", function() {
+
+        let key = $(this).attr("target");
+
+        $('#note-edit-day').val(user.training_plan.days[key]['day_note']);
+        $('#id_day').val(user.training_plan.days[key]['id']);
+
+        let modal_edit_day = new bootstrap.Modal(document.getElementById('edit-day-modal'), {
+            keyboard: false
+        })
+        modal_edit_day.toggle();
+    });
 
 
     $(".editMeal").on("click", function() {

@@ -26,7 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('trainer.home');
+
+        if (Auth::user()->role_id == 1) {
+            return view('trainer.home');
+        }else {
+            return view('client.home');
+        }
+
     }
 
     public function profile_index(Request $request)

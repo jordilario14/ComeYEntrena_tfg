@@ -84,6 +84,18 @@
     margin-top: 2rem;
 }
 
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+table tbody,
+table thead {
+    display: table;
+    width: 100%;
+}
+
 .input-ta {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -133,14 +145,6 @@
     border: 5px solid #214371;
 }
 
-.client-img-profile {
-    max-height: 250px;
-    border-radius: 50px 15px;
-    border: 5px solid #214371;
-    background: rgb(9, 9, 121);
-    background: linear-gradient(90deg, rgb(235, 235, 235) 35%, rgb(12, 60, 133) 100%);
-}
-
 .card-header-profile {
     background-image: url('/img/gimnasio.jpg');
     background-size: cover;
@@ -172,10 +176,6 @@
 
 .padded-1-rem {
     padding: 1rem;
-}
-
-.table-design {
-    padding: 2rem;
 }
 
 .icon-button-table {
@@ -274,6 +274,11 @@
     cursor: pointer;
 }
 
+.button-img-home-img-4:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
 .button-img-home-img-1:active {
     filter: brightness(0.3);
     cursor: pointer;
@@ -285,6 +290,11 @@
 }
 
 .button-img-home-img-3:active {
+    filter: brightness(0.3);
+    cursor: pointer;
+}
+
+.button-img-home-img-4:active {
     filter: brightness(0.3);
     cursor: pointer;
 }
@@ -310,19 +320,6 @@
     width: 100%;
     justify-content: space-evenly;
 }
-
-
-/* .button-img-home-img-1,
-.button-img-home-img-2,
-.button-img-home-img-3 {
-    box-shadow: inset 0 0 15px 10px black;
-    height: 150px;
-    width: 200px;
-    padding: 50px;
-    border-radius: 25px;
-    border: 1px solid black;
-}
- */
 
 .button-img-home-img-1 {
     box-shadow: inset 0 0 15px 10px black;
@@ -353,6 +350,17 @@
     height: 200px;
     width: 200px;
     background-image: url('/img/gimnasio.jpg');
+    background-size: cover;
+    border-radius: 50px;
+}
+
+.button-img-home-img-4 {
+    box-shadow: inset 0 0 15px 10px black;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+    width: 200px;
+    background-image: url('/img/home_clients.png');
     background-size: cover;
     border-radius: 50px;
 }
@@ -394,26 +402,6 @@ footer {
 .flexbox-column {
     display: flex;
     justify-content: center;
-}
-
-.title-cye {
-    color: #214371;
-    font-weight: bolder;
-    font-size: 45px;
-    margin-bottom: 2rem;
-}
-
-.title-cye-pn {
-    color: #214371;
-    font-weight: bolder;
-    font-size: 45px;
-}
-
-.title-cye-secondary {
-    color: #214371;
-    font-weight: bolder;
-    font-size: 30px;
-    margin-bottom: 2rem;
 }
 
 .title-cye-1st {
@@ -488,6 +476,11 @@ footer {
     justify-content: center;
 }
 
+.flex-start {
+    display: flex;
+    justify-content: start;
+}
+
 .img_home {
     max-height: 150px;
 }
@@ -525,6 +518,10 @@ footer {
     display: none;
 }
 
+.img-card-home-ix {
+    display: none;
+}
+
 .padded-5-rem {
     padding-bottom: 5rem;
 }
@@ -552,6 +549,33 @@ footer {
 /* Extra small devices (phones, 600px and down) */
 
 @media only screen and (max-width: 600px) {
+    .client-img-profile {
+        max-height: 150px;
+        border-radius: 50px 15px;
+        border: 5px solid #214371;
+        background: rgb(9, 9, 121);
+        background: linear-gradient(90deg, rgb(235, 235, 235) 35%, rgb(12, 60, 133) 100%);
+    }
+    .table-design {
+        padding: 0.2rem;
+    }
+    .title-cye-secondary {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 25px;
+        margin-bottom: 2rem;
+    }
+    .title-cye {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 30px;
+        margin-bottom: 2rem;
+    }
+    .title-cye-pn {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 30px;
+    }
     .ai-buttons {
         align-items: center;
     }
@@ -609,6 +633,33 @@ footer {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {
+    .client-img-profile {
+        max-height: 250px;
+        border-radius: 50px 15px;
+        border: 5px solid #214371;
+        background: rgb(9, 9, 121);
+        background: linear-gradient(90deg, rgb(235, 235, 235) 35%, rgb(12, 60, 133) 100%);
+    }
+    .table-design {
+        padding: 2rem;
+    }
+    .title-cye-secondary {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 30px;
+        margin-bottom: 2rem;
+    }
+    .title-cye {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 45px;
+        margin-bottom: 2rem;
+    }
+    .title-cye-pn {
+        color: #214371;
+        font-weight: bolder;
+        font-size: 45px;
+    }
     .ai-buttons {
         align-items: baseline;
     }
@@ -657,6 +708,16 @@ footer {
         background-size: cover;
         border-radius: 50px;
     }
+    .button-img-home-img-4 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 540px;
+        max-height: 250px;
+        width: 540px;
+        height: 250px;
+        background-image: url('/img/home_clients.png');
+        background-size: cover;
+        border-radius: 50px;
+    }
     .hide-on-small-md {
         display: none
     }
@@ -679,6 +740,13 @@ footer {
 /* Medium devices (landscape tablets, 768px and up) */
 
 @media only screen and (min-width: 768px) {
+    .img-card-home-ix {
+        max-height: 300px;
+        border-radius: 150px 60px;
+        display: block;
+        margin: 1rem;
+        border: 5px solid #214371;
+    }
     .img-card-home {
         max-height: 500px;
         border-radius: 150px 60px;
@@ -704,6 +772,13 @@ footer {
 /* Large devices (laptops/desktops, 992px and up) */
 
 @media only screen and (min-width: 992px) {
+    .img-card-home-ix {
+        max-height: 375px;
+        border-radius: 150px 60px;
+        display: block;
+        margin: 1rem;
+        border: 5px solid #214371;
+    }
     .padding-left-20px {
         padding-left: 20px;
     }
@@ -751,6 +826,16 @@ footer {
         width: 740px;
         height: 350px;
         background-image: url('/img/gimnasio.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-4 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 740px;
+        max-height: 350px;
+        width: 740px;
+        height: 350px;
+        background-image: url('/img/home_clients.png');
         background-size: cover;
         border-radius: 50px;
     }
@@ -825,6 +910,16 @@ footer {
         width: 940px;
         height: 450px;
         background-image: url('/img/gimnasio.jpg');
+        background-size: cover;
+        border-radius: 50px;
+    }
+    .button-img-home-img-4 {
+        box-shadow: inset 0 0 15px 10px black;
+        max-width: 940px;
+        max-height: 450px;
+        width: 940px;
+        height: 450px;
+        background-image: url('/img/home_clients.png');
         background-size: cover;
         border-radius: 50px;
     }
