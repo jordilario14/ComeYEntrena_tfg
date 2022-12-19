@@ -41,15 +41,15 @@
                     <div class="class-table-div text-left">
 
                         <table class="table table-design dataToSearch">
-                            <thead>
+                            <tbody>
                                 <tr>
                                     <th scope="col">Ejercicio</th>
                                     <th scope="col">Grupo muscular</th>
                                     <th scope="col" class="text-right">
                                     </th>
                                 </tr>
-                            </thead>
-                            <tbody>
+
+
                                 @forelse ($day->day_exercises as $key_ma=>$day_exercise)
                                     <tr>
                                         <td class="text-cye-default" scope="row"> {{ $day_exercise->exercise->name }}
@@ -70,7 +70,7 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <td colspan="3" class="text-center text-cye-default">No hay alimentos en esta comida.
+                                    <td colspan="3" class="text-center text-cye-default">No hay ejercicios en este día.
                                     </td>
                                 @endforelse
 

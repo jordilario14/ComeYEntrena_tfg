@@ -22,7 +22,6 @@
                     <input type="hidden" name="train-plan-id" id="train-plan-id" value="{{ $user->training_plan->id }}">
                     <h1 class="title-cye align-centered-phone ai-buttons">
                         Plan de entrenamiento
-                        <img class="icon-button-table addDay" src="{{ asset('img/icons/add.png') }}" alt="">
                     </h1>
 
                 </div>
@@ -30,47 +29,31 @@
                 @forelse ($user->training_plan->days as $key=>$day)
                     <h1 class="title-cye-secondary align-centered-phone margin-0-impt">
                         {{ $day->day_note }}
-                        <img class="icon-button-table addExercisePe" target="{{ $key }}"
-                            src="{{ asset('img/icons/add.png') }}" alt="">
-                        <img class="icon-button-table removeDay" target="{{ $day->id }}"
-                            src="{{ asset('img/icons/remove_line.png') }}" alt="">
-                        <img class="icon-button-table editDay" target="{{ $key }}"
-                            src="{{ asset('img/icons/note.png') }}" alt="">
                     </h1>
 
                     <div class="class-table-div text-left">
 
                         <table class="table table-design dataToSearch">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Ejercicio</th>
-                                    <th scope="col">Grupo muscular</th>
-                                    <th scope="col" class="text-right">
-                                    </th>
-                                </tr>
-                            </thead>
                             <tbody>
+                                <tr>
+                                    <th class="wrap-text" scope="col">Ejercicio</th>
+                                    <th class="wrap-text" scope="col">Grupo muscular</th>
+                                    <th class="wrap-text" scope="col">Series x repeticiones</th>
+                                    <th class="wrap-text" scope="col">RIR</th>
+
+                                </tr>
+
                                 @forelse ($day->day_exercises as $key_ma=>$day_exercise)
                                     <tr>
-                                        <td class="text-cye-default" scope="row"> {{ $day_exercise->exercise->name }}
+                                        <td class="text-cye-default wrap-text" scope="row"> {{ $day_exercise->exercise->name }}
                                         </td>
                                         <td class="text-cye-default wrap-text">{{ $day_exercise->exercise->muscle_group }}</td>
-                                        <td class="text-right text-cye-default">
-                                            <div class="button-table">
-                                                <img class="icon-button-table view_exercise_pe" target="{{ $key }}"
-                                                    targetma={{ $key_ma }} src="{{ asset('img/icons/view.png') }}"
-                                                    alt="">
-                                                <img class="icon-button-table edit_exercise_pe" target="{{ $key }}"
-                                                    targetma={{ $key_ma }} src="{{ asset('img/icons/edit.png') }}"
-                                                    alt="">
-                                                <img class="icon-button-table remove_exercise_pe"
-                                                    target={{ $day_exercise->id }}
-                                                    src="{{ asset('img/icons/remove.png') }}" alt="">
-                                            </div>
-                                        </td>
+                                        <td class="text-cye-default wrap-text">{{ $day_exercise->series." x ".$day_exercise->repetitions }}</td>
+                                        <td class="text-cye-default wrap-text">{{ $day_exercise->rir }}</td>
+
                                     </tr>
                                 @empty
-                                    <td colspan="3" class="text-center text-cye-default">No hay alimentos en esta comida.
+                                    <td colspan="4" class="text-center text-cye-default">No hay ejercicios en este día.
                                     </td>
                                 @endforelse
 

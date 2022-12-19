@@ -1,5 +1,9 @@
 /* cyrillic-ext */
 
+.pt-1rem {
+    padding-top: 1rem;
+}
+
 @font-face {
     font-family: 'Inter';
     font-style: normal;
@@ -86,7 +90,7 @@
 
 table {
     display: block;
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
 }
 
@@ -202,6 +206,12 @@ table thead {
     padding: 1rem 5% 0 5%;
     margin-right: auto;
     margin-left: auto;
+}
+
+.table-design>tbody>tr:first-child {
+    font-weight: bold !important;
+    color: #214371 !important;
+    border-bottom: 3px solid #214371 !important;
 }
 
 .table-design thead {

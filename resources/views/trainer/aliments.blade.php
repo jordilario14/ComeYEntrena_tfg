@@ -15,7 +15,7 @@
     <div class="class-table-div text-left">
 
         <table class="table table-design dataToSearch">
-            <thead>
+            <tbody>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
@@ -25,8 +25,7 @@
                     </div>
                 </th>
               </tr>
-            </thead>
-            <tbody>
+
                 @forelse ($alimentos as $key=>$alimento)
                     <tr>
                         <th class="text-cye-default" scope="row"> {{$alimento->id}} </th>

@@ -41,15 +41,14 @@
                     <div class="class-table-div text-left">
 
                         <table class="table table-design dataToSearch">
-                            <thead>
+                            <tbody>
                                 <tr>
                                     <th scope="col">Alimento</th>
                                     <th scope="col">Cantidad</th>
                                     <th scope="col" class="text-right">
                                     </th>
                                 </tr>
-                            </thead>
-                            <tbody>
+
                                 @forelse ($meal->meal_aliments as $key_ma=>$meal_aliment)
                                     <tr>
                                         <td class="text-cye-default" scope="row"> {{ $meal_aliment->aliment->name }}

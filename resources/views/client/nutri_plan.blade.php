@@ -22,7 +22,6 @@
                     <input type="hidden" name="nutri-plan-id" id="nutri-plan-id" value="{{ $user->nutritional_plan->id }}">
                     <h1 class="title-cye align-centered-phone ai-buttons">
                         Plan nutricional
-                        <img class="icon-button-table addMeal" src="{{ asset('img/icons/add.png') }}" alt="">
                     </h1>
 
                 </div>
@@ -30,45 +29,24 @@
                 @forelse ($user->nutritional_plan->meals as $key=>$meal)
                     <h1 class="title-cye-secondary align-centered-phone margin-0-impt">
                         {{ $meal->meal_note }}
-                        <img class="icon-button-table addAlimentPn" target="{{ $key }}"
-                            src="{{ asset('img/icons/add.png') }}" alt="">
-                        <img class="icon-button-table removeMeal" target="{{ $meal->id }}"
-                            src="{{ asset('img/icons/remove_line.png') }}" alt="">
-                        <img class="icon-button-table editMeal" target="{{ $key }}"
-                            src="{{ asset('img/icons/note.png') }}" alt="">
                     </h1>
 
                     <div class="class-table-div text-left">
 
                         <table class="table table-design dataToSearch">
-                            <thead>
+                            <tbody>
                                 <tr>
                                     <th scope="col">Alimento</th>
                                     <th scope="col">Cantidad</th>
-                                    <th scope="col" class="text-right">
                                     </th>
                                 </tr>
-                            </thead>
-                            <tbody>
+
                                 @forelse ($meal->meal_aliments as $key_ma=>$meal_aliment)
                                     <tr>
                                         <td class="text-cye-default" scope="row"> {{ $meal_aliment->aliment->name }}
                                         </td>
                                         <td class="text-cye-default wrap-text">{{ floatval($meal_aliment->cuantity) * 100 }}
                                             {{ $meal_aliment->aliment->measure }}</td>
-                                        <td class="text-right text-cye-default">
-                                            <div class="button-table">
-                                                <img class="icon-button-table view_aliment_pn" target="{{ $key }}"
-                                                    targetma={{ $key_ma }} src="{{ asset('img/icons/view.png') }}"
-                                                    alt="">
-                                                <img class="icon-button-table edit_aliment_pn" target="{{ $key }}"
-                                                    targetma={{ $key_ma }} src="{{ asset('img/icons/edit.png') }}"
-                                                    alt="">
-                                                <img class="icon-button-table remove_aliment_pn"
-                                                    target={{ $meal_aliment->id }}
-                                                    src="{{ asset('img/icons/remove.png') }}" alt="">
-                                            </div>
-                                        </td>
                                     </tr>
                                 @empty
                                     <td colspan="3" class="text-center text-cye-default">No hay alimentos en esta comida.
@@ -89,7 +67,7 @@
 
                 <hr class="hr-separador">
 
-                <h1 class="title-cye-secondary align-centered-phone margin-0-impt">
+                <h1 class="title-cye-secondary align-centered-phone margin-0-impt pt-1rem">
                     Resumen
                 </h1>
 

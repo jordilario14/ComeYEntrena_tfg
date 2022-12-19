@@ -28,7 +28,7 @@
     </div>
     <div class="row-custom pb-5">
         <div class="column-center-img-1 ">
-            <div class="button-img-home-img-4 centered-middle" onclick="location.href='{{ route('pn-client') }}'">
+            <div class="button-img-home-img-4 centered-middle text-align-centered-phone" onclick="location.href='{{ route('pn-client') }}'">
                 <h1 class="title-home-white">
                     Plan nutricional
                  </h1>
@@ -39,7 +39,7 @@
 
     <div class="row-custom pb-5">
         <div class="column-center-img-1 ">
-            <div class="button-img-home-img-3 centered-middle" onclick="location.href='{{ route('pe-client') }}'">
+            <div class="button-img-home-img-3 centered-middle text-align-centered-phone" onclick="location.href='{{ route('pe-client') }}'">
                 <h1 class="title-home-white">
                     Plan de entrenamiento
                  </h1>
