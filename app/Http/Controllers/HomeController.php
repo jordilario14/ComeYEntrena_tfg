@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,8 @@ class HomeController extends Controller
         if (Auth::user()->role_id == 1) {
             return view('trainer.home');
         }else {
-            return view('client.home');
+
+            return view('client.home')->with('trainer', User::where('id', 1)->first());
         }
 
     }

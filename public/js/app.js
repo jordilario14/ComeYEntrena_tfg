@@ -672,6 +672,18 @@ $(document).ready(function() {
         });
     });
 
+    $(".link-client").on("click", function() {
+        let target = $(this).attr("target");
+
+        $("#cpanel").addClass('link-profile-hidden');
+        $("#support").addClass('link-profile-hidden');
+
+        $(target).removeClass('link-profile-hidden');
+
+        $('.link-client').removeClass('current');
+        $(this).addClass('current');
+    });
+
     $(".link-profile").on("click", function() {
         let target = $(this).attr("target");
 

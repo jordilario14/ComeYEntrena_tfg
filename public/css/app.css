@@ -409,6 +409,10 @@ footer {
     padding-top: 5rem
 }
 
+.img-spp {
+    max-width: 50px;
+}
+
 .flexbox-column {
     display: flex;
     justify-content: center;
@@ -495,7 +499,7 @@ footer {
     max-height: 150px;
 }
 
-.flex-sp-bt {
+.flex-sp-bt-ph {
     display: flex;
     justify-content: space-evenly;
 }
@@ -559,6 +563,10 @@ footer {
 /* Extra small devices (phones, 600px and down) */
 
 @media only screen and (max-width: 600px) {
+    .flex-sp-bt-ph {
+        display: flex;
+        flex-direction: column;
+    }
     .client-img-profile {
         max-height: 150px;
         border-radius: 50px 15px;
@@ -643,6 +651,10 @@ footer {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {
+    .flex-sp-bt-ph {
+        display: flex;
+        justify-content: space-evenly;
+    }
     .client-img-profile {
         max-height: 250px;
         border-radius: 50px 15px;
