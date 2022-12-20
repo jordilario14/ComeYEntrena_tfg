@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Aliment;
+use App\Models\User;
 
 class AlimentTest extends TestCase
 {
@@ -13,10 +15,23 @@ class AlimentTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_aliment()
     {
-        $response = $this->get('/');
+        $user = User::where('id', 1)->first();
+        $test_aliment = [
+            'name' => 'Aguacate',
+            'measure' => 'g.',
+            'kcalories' => 200,
+            'protein' => 5,
+            'lipids' => 30,
+            'glucids' => 0,
+            '_token'=>'test' //here
+        ];
+        $response = $this->actingAs($user)->post('/add-aliment', $test_aliment);
+        $response->assertTrue(!$response['error']);
 
-        $response->assertStatus(200);
+        //$aliment = Aliment::where('name', $test_aliment['name'])->first();
+
+
     }
 }
