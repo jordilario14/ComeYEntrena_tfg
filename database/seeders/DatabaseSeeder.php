@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             'my_interests' => 'Interesado en el culturismo y el levantamiento de peso. Me gusta mucho aprender sobre nutricion y sobre diferentes estilos de entrenamiento.',
             'about_me' => 'Examinado por NCSA, con titulaciones varias en el sector de nutrición y entrenamiento.',
             'email'        => 'jordilario@uoc.edu',
-            'password'     => bcrypt('12345678'),
+            'password'     => bcrypt('test_password_UOC_498'),
             'tf_number' => 665499755,
             'weight' => 81.2,
             'height' => 173,
