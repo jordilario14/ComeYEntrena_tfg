@@ -166,6 +166,6 @@
 
 <script>
     var clients = @json($clients);
-    console.log(clients);
+    //console.log(clients);
 </script>
 @endsection

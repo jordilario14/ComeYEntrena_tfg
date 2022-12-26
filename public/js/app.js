@@ -8,11 +8,11 @@ $(document).ready(function() {
 
         let object = user.training_plan.days[target]['day_exercises'][targetma];
 
-        console.log(user.training_plan.days);
+        //console.log(user.training_plan.days);
 
         $('#id_day_edit').val(user.training_plan.days[target]['id']);
         $('#id_day_exercise_edit').val(object['id']);
-        console.log(object);
+        //console.log(object);
         $('#name-edit-exercise').val(object['exercise']['id']);
         $("#series-edit-exercise").val(object['series']);
         $("#reps-edit-exercise").val(object['repetitions']);
@@ -73,7 +73,7 @@ $(document).ready(function() {
         let targetma = $(this).attr('targetma');
 
         let object = user.nutritional_plan.meals[target]['meal_aliments'][targetma];
-        console.log(object);
+        //console.log(object);
         $("#name-view-aliment-pn").html(object['aliment']['name']);
         $("#measure-view-aliment-pn").html(object['aliment']['measure']);
 
@@ -537,7 +537,7 @@ $(document).ready(function() {
                 },
                 success: function(response) {
                     if (response.error == false) {
-                        console.log(response);
+                        //console.log(response);
                         alert(response.messages);
                         location.href = response.route;
                     } else {
@@ -774,7 +774,7 @@ $(document).ready(function() {
 
         let target = $(this).attr('target');
         let object = clients[parseInt(target)];
-        console.log(object);
+        //console.log(object);
         $("#name-view").html(object['name']);
         $("#surname-view").html(object['surname'] == null ? "N/A" : object['surname']);
         $("#tel-view").html(object['tf_number'] == null ? "N/A" : object['tf_number']);
@@ -798,7 +798,7 @@ $(document).ready(function() {
 
         let target = $(this).attr('target');
         let object = aliments[parseInt(target)];
-        console.log(object);
+        //console.log(object);
         $("#name-view").html(object['name']);
         $("#measure-view").html(object['measure']);
         $("#kcal-view").html(object['kcal']);
@@ -933,7 +933,7 @@ $(document).ready(function() {
                 _token: _token
             },
             success: function(response) {
-                console.log(response);
+                //console.log(response);
                 if (response.error == false) {
                     alert("Ejercicio modificado correctamente.");
                     location.href = response.route;
@@ -966,7 +966,7 @@ $(document).ready(function() {
                     alert("Alimento creado correctamente.");
                     location.href = response.route;
                 } else {
-                    console.log(response);
+                    //console.log(response);
                     alert(response.messages);
 
                 }
@@ -993,6 +993,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.error == false) {
+                    
                     alert("Cliente dado de alta correctamente. Se ha enviado un mail al cliente con las credenciales.");
                     location.href = response.route;
                 } else {
